@@ -28,11 +28,58 @@
 - [ ] Restore and expand the time-slot picker with a broader daily schedule.
 - [ ] Make the booking card, slot buttons, labels, and confirmation state more aesthetic.
 - [ ] Make the booking confirmation and WhatsApp message use the customer’s selected time slot.
+- [ ] Allow multiple services to be selected from separate menu categories before booking.
+- [ ] Show selected services in a summary and pass all of them into the appointment request.
 - [ ] Replace the fixed service dropdown with a manual service-entry field.
 - [ ] Preserve clickable menu prefilling into the manual service field.
 - [ ] Add a prominent Call A ONE option on the homepage linked to +91 97305 10517.
 - [ ] Add a photo gallery section using A ONE’s existing website and salon imagery.
 - [ ] Add Feedback and genuine Reviews actions at the end of the homepage.
+- [ ] Add one responsive homepage video with fallback poster imagery and accessible playback controls.
+- [ ] Confirm best service provider names from the old A ONE page or supplied salon materials.
+- [ ] Add a best service providers section immediately after the menu.
+- [x] Add preferred provider selection to the booking form and WhatsApp request.
 - [ ] Replace the harsh condensed display font with an elegant aesthetic serif headline font.
 - [ ] Refine body, navigation, pricing, and booking typography for a premium salon hierarchy.
 - [ ] Document that live slot availability requires a booking backend or external booking integration.
+- [x] Upgrade the project with backend, authentication, and database scaffolding.
+- [x] Create an appointments table for service, date, time, provider, customer, status, and WhatsApp handoff metadata.
+- [x] Persist booking requests through typed backend procedures.
+- [x] Show saved-request success and error states in the booking form.
+- [x] Add a typed backend procedure to mark an appointment’s WhatsApp handoff metadata.
+- [x] Update the booking WhatsApp action so the persisted appointment stores the handoff timestamp.
+- [x] Verify the full save-and-handoff flow in the browser after persistence updates.
+- [x] Await WhatsApp handoff persistence success before resetting the booking form.
+- [x] Show a handoff error state if the timestamp update fails.
+- [ ] Browser-test the complete save-appointment and WhatsApp handoff flow.
+- [x] Restore the Instagram icon as a visible mobile header action beside booking and menu controls.
+- [x] Verify the Instagram action on a phone viewport and save a checkpoint.
+- [x] Make the main booking action open WhatsApp directly without saving a booking record first.
+- [x] Include selected services, date, time, provider, customer name, and phone in the direct WhatsApp message.
+- [x] Remove the intermediate save/review state and reset the form after opening WhatsApp.
+- [x] Save a new checkpoint after verifying the restored mobile Instagram action and direct WhatsApp booking.
+- [x] Remove obsolete save/review booking state and unused persistence-hand-off UI from the direct WhatsApp front-end flow.
+- [x] Re-run build/typecheck and visually verify the simplified direct WhatsApp booking flow.
+- [x] Upload the supplied IMG_5997(1).MOV as a persistent website video asset.
+- [x] Change only the booklet button text from OPEN THE MENU to OUR BEST WORKS.
+- [x] Open the supplied video from the OUR BEST WORKS action.
+- [x] Add a tempting limited ₹1,499 offer block before Choose your service.
+- [x] Include cleanup/D-Tan, hair spa, hair wash, hand wax, leg wax, underarm, upper lips, eyebrows, and head massage in the offer block.
+- [x] Keep the existing first page/hero as the opening section without deleting content.
+- [x] Move the limited ₹1,499 offer directly after the first page.
+- [x] Strengthen the ₹1,499 offer so it is more visually tempting and conversion-focused.
+- [x] Place the full four-section menu directly after the offer.
+- [x] Keep the booklet, video, remaining sections, booking, memberships, contact, gallery, feedback, and reviews after the menu.
+- [x] Display the limited offer deadline prominently as valid until 31 August.
+- [x] Add or restore the photo gallery after the menu using available A ONE salon imagery.
+- [x] Add genuine Reviews and Feedback actions at the end of the homepage without inventing testimonials.
+- [x] Re-verify the final homepage order after these sections are present.
+- [x] Show the supplied Best Works video inline on the homepage by default instead of only after clicking.
+- [x] Keep the OUR BEST WORKS action available for the enlarged video view.
+- [x] Verify the inline video preview is visible on desktop and mobile.
+- [x] Upload the supplied IMG_6021(1).MOV as a persistent opening-animation asset.
+- [x] Trigger the animation after the specified link click with a grey transparent overlay.
+- [x] Transition from the animation into the next page content on desktop and mobile.
+- [ ] Verify the inline Best Works video preview on both desktop and mobile with completed screenshots.
+- [ ] Browser-test the full OUR BEST WORKS flow on desktop and mobile: click, grey intro animation, then enlarged video.
+- [ ] Save a checkpoint after the animation and video flow is fully verified.
