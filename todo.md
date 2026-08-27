@@ -31,6 +31,8 @@
 - [ ] Replace the fixed service dropdown with a manual service-entry field.
 - [ ] Preserve clickable menu prefilling into the manual service field.
 - [ ] Add a prominent Call A ONE option on the homepage linked to +91 97305 10517.
+- [ ] Add a photo gallery section using A ONE’s existing website and salon imagery.
+- [ ] Add Feedback and genuine Reviews actions at the end of the homepage.
 - [ ] Replace the harsh condensed display font with an elegant aesthetic serif headline font.
 - [ ] Refine body, navigation, pricing, and booking typography for a premium salon hierarchy.
 - [ ] Document that live slot availability requires a booking backend or external booking integration.

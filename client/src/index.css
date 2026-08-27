@@ -34,3 +34,7 @@
 /* Front-page call action: a quieter direct-contact option beside booking and menu discovery. */
 .call-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:49px;padding:0 15px;border-bottom:1px solid #111;font-family:var(--geo);font-size:10px;font-weight:700;letter-spacing:.08em;white-space:nowrap}.call-button:hover{background:#111;color:#fff}.hero-buttons{flex-wrap:wrap}
 @media(max-width:640px){.call-button{width:100%;min-height:48px;border:1px solid #111}.hero-buttons{gap:12px}}
+
+/* Secondary location action: smaller and quieter than the primary phone action. */
+.locate-button{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:7px 0;color:#555;font-family:var(--geo);font-size:9px;font-weight:700;letter-spacing:.08em;border-bottom:1px solid #999;white-space:nowrap}.locate-button:hover{color:#111;border-color:#111}.locate-button svg{stroke-width:1.7}
+@media(max-width:640px){.locate-button{width:auto;min-height:40px;padding:0 10px;border:1px solid #aaa;font-size:9px}.locate-button:hover{background:#111;color:#fff;border-color:#111}}
