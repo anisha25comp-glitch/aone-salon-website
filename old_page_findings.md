@@ -63,3 +63,13 @@ The creator video now presents in a 4:3 frame on desktop and mobile. The inline 
 ## Final IMG_5997 Muted Video Update
 
 The newly attached `IMG_5997.MOV` was converted to a browser-compatible muted MP4 and is now used for both creator-video instances. Both video elements are explicitly muted, the booklet-cover poster was removed from the video presentation, and the creator-video gradient/shadow overlay was disabled. Fresh phone and desktop captures confirm the clean presentation.
+
+
+## Corrected First-Page Video Role
+
+The asset roles were corrected after the prior update: the newly attached `IMG_5997.MOV` was converted to a browser-compatible muted MP4 and is now used only in the first-page/booklet-cover artwork slot. The creator favourite section and its lightbox remain mapped to the separate `IMG_6021(3)`-derived creator video. Fresh phone and desktop captures confirm the first-page video placement and the separate creator-video section.
+
+
+## Corrected First-Page Logo/Video Placement Verification
+
+The attached IMG_5997-derived muted video is now confined to the actual first-page header logo slot, with the original booklet-cover artwork restored in its later section. The creator favourite preview and lightbox remain separately mapped to the IMG_6021(3)-derived video. Fresh phone and desktop captures confirm the two asset roles are visually separate and the booking/provider layout is unchanged.

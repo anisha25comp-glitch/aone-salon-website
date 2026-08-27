@@ -110,3 +110,4 @@
 - [x] Move the Booking section directly below Best Service Providers and preserve the existing WhatsApp booking behavior.
 - [x] Remove the remaining grey overlap from the creator video and make sound reliably available after tapping the video. (Superseded by the later muted-video request.)
 - [x] Replace the creator video with the newly attached IMG_5997.MOV, keep it muted, and remove the logo/branding overlay from its presentation.
+- [x] Restore the creator video asset and use the attached IMG_5997.MOV only for the first-page artwork/logo area.
