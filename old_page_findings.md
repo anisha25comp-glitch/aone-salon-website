@@ -83,3 +83,8 @@ Fresh mobile and desktop captures confirm the attached IMG_5997-derived muted vi
 ## First-Load Opening Video Verification
 
 The existing opening-animation asset is now shown immediately on first site load in a full-screen black video intro, with a visible Skip Intro control and automatic handoff to the homepage when playback ends or fails. The authentic A ONE logo is restored in the header; the creator favourite video remains separate. Fresh mobile and desktop captures confirm the opening intro appears first and the layout remains responsive.
+
+
+## Corrected Logo-Area Video Intro Verification
+
+The first-load intro now uses the same IMG_5997-derived muted video that was previously placed in the logo area, showing the A ONE logo artwork immediately when the Manus link opens. The authentic A ONE logo image is restored in the header after the intro, and the separate creator video remains mapped to IMG_6021(3). Fresh phone and desktop captures confirm the corrected asset roles.

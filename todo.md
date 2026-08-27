@@ -112,3 +112,4 @@
 - [x] Replace the creator video with the newly attached IMG_5997.MOV, keep it muted, and remove the logo/branding overlay from its presentation.
 - [x] Restore the creator video asset and use the attached IMG_5997.MOV only for the first-page artwork/logo area.
 - [x] Restore the authentic header logo and show the requested opening video immediately on first site load before revealing the homepage.
+- [x] Use the same video previously placed in the logo area as the first-load opening video, restore the authentic header logo, and keep the creator video separate.
