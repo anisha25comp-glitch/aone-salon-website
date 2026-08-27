@@ -108,3 +108,8 @@ The 2× opening video now transitions into an authentic A ONE logo phase for app
 ## Faster Intro and Grey Logo Phase Verification
 
 The first-load intro now runs at 3× playback speed. Its video phase remains clean and control-free, while the end logo-emergence phase uses a subtle translucent grey background and a short scale/blur reveal before the homepage appears. Mobile and desktop captures confirm the homepage remains intact after the faster handoff.
+
+
+## Updated Provider Roster Verification
+
+Per the owner's latest confirmation, the provider roster now excludes Sakshi and Priti. The homepage provider cards and booking selector use **Faiz**, **Divya — Beautician**, and **Sarang — Hair dresser**, plus the neutral Any available provider option. Full-page mobile and desktop captures, source assertions, Vitest, TypeScript, and production build checks passed.

@@ -117,3 +117,5 @@
 - [x] Set the first-load opening video to 2× playback speed while preserving tap-anywhere dismissal.
 - [x] Add an end transition where the opening video resolves into the authentic A ONE logo before revealing the homepage.
 - [x] Increase the opening video speed beyond 2× and add a subtle grey transparent background to the logo-emergence phase.
+- [x] Remove the first-load A ONE intro video so the website opens directly on the homepage while preserving the header logo and creator video.
+- [x] Replace Sakshi and Priti with Divya (Beautician) and Sarang (Hair Dresser) in the provider section and booking options.

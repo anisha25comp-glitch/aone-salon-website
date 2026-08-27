@@ -12,13 +12,9 @@ describe("creator video audio flow", () => {
     expect(homeSource).toContain('className="video-sound-button"');
   });
 
-  it("configures the first-load intro for 2x autoplay and tap dismissal", () => {
-    expect(homeSource).toContain('className={introPhase === "logo" ? "opening-intro logo-phase" : "opening-intro"}');
-    expect(homeSource).toContain('onClick={() => setIntroPlaying(false)}');
-    expect(homeSource).toContain("playbackRate = 3");
-    expect(homeSource).not.toContain('className="opening-intro-ui"');
-    expect(homeSource).toContain('className="opening-intro-logo"');
-    expect(homeSource).toContain('setIntroPhase("logo")');
-    expect(homeSource).toContain("setIntroPlaying(false), 900");
+  it("opens directly on the homepage with the authentic header logo", () => {
+    expect(homeSource).not.toContain("introPlaying");
+    expect(homeSource).not.toContain("opening-intro");
+    expect(homeSource).toContain('src="/manus-storage/aone-authentic-logo_d251e44f.jpg"');
   });
 });

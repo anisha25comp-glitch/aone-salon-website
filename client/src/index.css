@@ -89,12 +89,7 @@
 /* Keep the first-page replacement video inside the same fixed logo frame as the original mark. */
 .ig-mark video{width:130px;height:48px;object-fit:cover;display:block}@media(max-width:640px){.ig-mark video{width:106px;height:40px}}
 
-/* First-load opening video: full-screen black intro before the homepage is revealed. */
-.opening-intro{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;background:#000;color:#fff}.opening-intro-video{display:block;width:100%;height:100%;object-fit:cover;background:#000}.opening-intro-ui{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px 5vw;background:linear-gradient(0deg,rgba(0,0,0,.76),transparent);font:800 10px var(--geo);letter-spacing:.12em}.opening-intro-ui button{display:inline-flex;align-items:center;gap:8px;padding:12px 14px;border:1px solid rgba(255,255,255,.65);background:rgba(0,0,0,.35);color:#fff;font:800 9px var(--geo);letter-spacing:.1em}.opening-intro-ui button:hover{background:#fff;color:#111}@media(max-width:640px){.opening-intro-ui{padding:18px 7vw;font-size:8px}.opening-intro-ui button{padding:10px 11px;font-size:8px}}
 
 .video-sound-button{position:absolute;left:50%;bottom:28px;z-index:2;display:inline-flex;align-items:center;gap:8px;transform:translateX(-50%);padding:12px 16px;border:1px solid #fff;background:#fff;color:#111;font:800 9px var(--geo);letter-spacing:.1em}.video-sound-button:hover{background:var(--coral)}@media(max-width:640px){.video-sound-button{bottom:20px;width:max-content;max-width:calc(100% - 36px);justify-content:center}}
 
-.opening-intro.logo-phase{background:#000;animation:opening-logo-hold .9s ease-out both}.opening-intro-logo{display:block;width:min(56vw,380px);height:auto;max-height:38vh;object-fit:contain;filter:brightness(0) invert(1);animation:opening-logo-emerge .9s cubic-bezier(.23,1,.32,1) both}@keyframes opening-logo-emerge{0%{opacity:0;transform:scale(.72);filter:brightness(0) invert(1) blur(10px)}55%{opacity:1;transform:scale(1.04);filter:brightness(0) invert(1) blur(0)}100%{opacity:1;transform:scale(1);filter:brightness(0) invert(1) blur(0)}}@keyframes opening-logo-hold{0%{opacity:0}18%{opacity:1}100%{opacity:1}}@media(max-width:640px){.opening-intro-logo{width:min(72vw,300px);max-height:28vh}}
 
-/* Subtle grey transparency requested for the logo-emergence handoff. */
-.opening-intro.logo-phase{background:rgba(126,126,126,.42);backdrop-filter:blur(2px)}
