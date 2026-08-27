@@ -21,6 +21,10 @@
 - [ ] Verify desktop and mobile presentation and save an updated checkpoint.
 - [ ] Add an appointment booking flow with service, date, time slot, and customer fields.
 - [ ] Add clear validation, confirmation feedback, and WhatsApp handoff to 9730510517.
+- [ ] Replace the short fixed time-slot list with a manual preferred-time field.
+- [ ] Restore and expand the time-slot picker with a broader daily schedule.
+- [ ] Make the booking card, slot buttons, labels, and confirmation state more aesthetic.
+- [ ] Make the booking confirmation and WhatsApp message use the customer’s selected time slot.
 - [ ] Replace the harsh condensed display font with an elegant aesthetic serif headline font.
 - [ ] Refine body, navigation, pricing, and booking typography for a premium salon hierarchy.
 - [ ] Document that live slot availability requires a booking backend or external booking integration.

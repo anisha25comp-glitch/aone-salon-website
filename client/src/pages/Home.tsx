@@ -19,7 +19,7 @@ type Category = keyof typeof menu;
 const categories = Object.keys(menu) as Category[];
 const packages = [{ label: "WOMEN", title: "The occasion edit", copy: "Haircut + styling + root touch-up + nails + threading", price: "₹2,999", color: "yellow" }, { label: "MEN", title: "The clean-up", copy: "Haircut + hair wash + beard + D-Tan", price: "₹699", color: "mint" }, { label: "GROUPS", title: "Platinum people", copy: "Up to five family or friends, with VIP booking priority", price: "₹2,000 / year", color: "purple" }];
 const bookingServices = ["Basic Haircut + Styling", "Advanced Haircut + Styling", "Men’s Haircut", "Hair Spa", "Full Body Massage", "Premium Pedicure"];
-const timeSlots = ["10:00 AM", "11:30 AM", "1:00 PM", "2:30 PM", "4:00 PM", "5:30 PM", "7:00 PM"];
+const timeSlots = ["9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", "1:00 PM", "1:30 PM", "2:00 PM", "2:30 PM", "3:00 PM", "3:30 PM", "4:00 PM", "4:30 PM", "5:00 PM", "5:30 PM", "6:00 PM", "6:30 PM", "7:00 PM", "7:30 PM", "8:00 PM", "8:30 PM"];
 
 export default function Home() {
   const [slide, setSlide] = useState(0);
