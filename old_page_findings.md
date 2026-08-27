@@ -73,3 +73,8 @@ The asset roles were corrected after the prior update: the newly attached `IMG_5
 ## Corrected First-Page Logo/Video Placement Verification
 
 The attached IMG_5997-derived muted video is now confined to the actual first-page header logo slot, with the original booklet-cover artwork restored in its later section. The creator favourite preview and lightbox remain separately mapped to the IMG_6021(3)-derived video. Fresh phone and desktop captures confirm the two asset roles are visually separate and the booking/provider layout is unchanged.
+
+
+## Final Corrected Asset-Role Capture
+
+Fresh mobile and desktop captures confirm the attached IMG_5997-derived muted video is confined to the first-page header logo frame without the prior oversized overlap. The original booklet-cover artwork is restored, and the creator favourite preview/lightbox remain mapped to the separate IMG_6021(3)-derived video. The booking/provider order and existing navigation remain intact.

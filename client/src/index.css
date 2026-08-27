@@ -85,3 +85,6 @@
 
 /* First-page header asset: keep the attached video confined to the logo frame. */
 .ig-mark video{display:block;width:100%;height:100%;object-fit:cover}
+
+/* Keep the first-page replacement video inside the same fixed logo frame as the original mark. */
+.ig-mark video{width:130px;height:48px;object-fit:cover;display:block}@media(max-width:640px){.ig-mark video{width:106px;height:40px}}
