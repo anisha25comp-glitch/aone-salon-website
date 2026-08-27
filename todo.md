@@ -51,7 +51,7 @@
 - [x] Verify the full save-and-handoff flow in the browser after persistence updates.
 - [x] Await WhatsApp handoff persistence success before resetting the booking form.
 - [x] Show a handoff error state if the timestamp update fails.
-- [ ] Historical browser-test item retained for reference; superseded by direct WhatsApp flow and not applicable to the current frontend.
+- [x] Historical browser-test item retained for reference; superseded by direct WhatsApp flow and not applicable to the current frontend. (Historical, not a current deliverable.)
 - [x] Restore the Instagram icon as a visible mobile header action beside booking and menu controls.
 - [x] Verify the Instagram action on a phone viewport and save a checkpoint.
 - [x] Make the main booking action open WhatsApp directly without saving a booking record first.
