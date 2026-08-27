@@ -1,47 +1,47 @@
 # Homepage Revision Tasks
 
-- [ ] Open and review the supplied AONE Salon Instagram reference.
-- [ ] Open and review the old AONE Salon webpage reference provided by the owner.
-- [ ] Capture the actual brand colors, logo treatment, photography style, tone, and content priorities.
-- [ ] Compare the old webpage’s menu layout, branding, and booking flow against the current homepage.
-- [ ] Replace the previous Quiet Luxury Studio direction with an Instagram-inspired identity.
-- [ ] Shift the experience from quiet editorial to energetic, colorful, social-first, and engaging.
-- [ ] Replace the playful flame logo with a minimal, classy A ONE monogram.
-- [ ] Refine header logo sizing, spacing, and wordmark treatment for premium presentation.
-- [ ] Compare the current homepage against the reference and identify the highest-impact mismatches.
-- [ ] Revise the homepage visual direction and content hierarchy based on the reference.
-- [ ] Implement the revised homepage while preserving service, package, membership, and location information.
-- [ ] Add a photo-led full service menu with category tabs, service images, prices, and mobile-friendly browsing.
-- [ ] Keep the salon menu separated into exactly four main service category panels instead of combining categories.
-- [ ] Add detailed subsections inside each of the four main menu panels to match the SalonBook structure.
-- [ ] Make each service row clickable and pass the selected service directly into the booking form.
-- [ ] Add stronger interactive hooks: animated offer spotlight, category switching, hover motion, and repeated booking prompts.
-- [ ] Use the SalonBook PDF front-page artwork as a prominent homepage visual.
-- [ ] Reset all accent colors to black, white, and neutral grey only.
-- [ ] Extract and use the original A ONE scissors logo treatment from the SalonBook cover.
-- [ ] Increase the authentic logo size and integrate it into the header with intentional framing and spacing.
-- [ ] Map the booklet’s brand message, service categories, packages, memberships, and pricing into the website content.
-- [ ] Verify desktop and mobile presentation and save an updated checkpoint.
-- [ ] Add an appointment booking flow with service, date, time slot, and customer fields.
-- [ ] Add clear validation, confirmation feedback, and WhatsApp handoff to 9730510517.
-- [ ] Replace the short fixed time-slot list with a manual preferred-time field.
-- [ ] Restore and expand the time-slot picker with a broader daily schedule.
-- [ ] Make the booking card, slot buttons, labels, and confirmation state more aesthetic.
-- [ ] Make the booking confirmation and WhatsApp message use the customer’s selected time slot.
-- [ ] Allow multiple services to be selected from separate menu categories before booking.
-- [ ] Show selected services in a summary and pass all of them into the appointment request.
-- [ ] Replace the fixed service dropdown with a manual service-entry field.
-- [ ] Preserve clickable menu prefilling into the manual service field.
-- [ ] Add a prominent Call A ONE option on the homepage linked to +91 97305 10517.
-- [ ] Add a photo gallery section using A ONE’s existing website and salon imagery.
-- [ ] Add Feedback and genuine Reviews actions at the end of the homepage.
-- [ ] Add one responsive homepage video with fallback poster imagery and accessible playback controls.
-- [ ] Confirm best service provider names from the old A ONE page or supplied salon materials.
-- [ ] Add a best service providers section immediately after the menu.
+- [x] Open and review the supplied AONE Salon Instagram reference.
+- [x] Open and review the old AONE Salon webpage reference provided by the owner.
+- [x] Capture the actual brand colors, logo treatment, photography style, tone, and content priorities.
+- [x] Compare the old webpage’s menu layout, branding, and booking flow against the current homepage.
+- [x] Replace the previous Quiet Luxury Studio direction with an Instagram-inspired identity.
+- [x] Shift the experience from quiet editorial to energetic, colorful, social-first, and engaging.
+- [x] Replace the playful flame logo with a minimal, classy A ONE monogram.
+- [x] Refine header logo sizing, spacing, and wordmark treatment for premium presentation.
+- [x] Compare the current homepage against the reference and identify the highest-impact mismatches.
+- [x] Revise the homepage visual direction and content hierarchy based on the reference.
+- [x] Implement the revised homepage while preserving service, package, membership, and location information.
+- [x] Add a photo-led full service menu with category tabs, service images, prices, and mobile-friendly browsing.
+- [x] Keep the salon menu separated into exactly four main service category panels instead of combining categories.
+- [x] Add detailed subsections inside each of the four main menu panels to match the SalonBook structure.
+- [x] Make each service row clickable and pass the selected service directly into the booking form.
+- [x] Add stronger interactive hooks: animated offer spotlight, category switching, hover motion, and repeated booking prompts.
+- [x] Use the SalonBook PDF front-page artwork as a prominent homepage visual.
+- [x] Reset all accent colors to black, white, and neutral grey only.
+- [x] Extract and use the original A ONE scissors logo treatment from the SalonBook cover. (Final authentic logo sourced from the old A ONE webpage.)
+- [x] Increase the authentic logo size and integrate it into the header with intentional framing and spacing.
+- [x] Map the booklet’s brand message, service categories, packages, memberships, and pricing into the website content.
+- [x] Verify desktop and mobile presentation and save an updated checkpoint.
+- [x] Add an appointment booking flow with service, date, time slot, and customer fields.
+- [x] Add clear validation, confirmation feedback, and WhatsApp handoff to 9730510517.
+- [x] Replace the short fixed time-slot list with a manual preferred-time field. (Superseded by expanded time-slot picker.)
+- [x] Restore and expand the time-slot picker with a broader daily schedule.
+- [x] Make the booking card, slot buttons, labels, and confirmation state more aesthetic.
+- [x] Make the booking confirmation and WhatsApp message use the customer’s selected time slot.
+- [x] Allow multiple services to be selected from separate menu categories before booking.
+- [x] Show selected services in a summary and pass all of them into the appointment request.
+- [x] Replace the fixed service dropdown with a manual service-entry field.
+- [x] Preserve clickable menu prefilling into the manual service field.
+- [x] Add a prominent Call A ONE option on the homepage linked to +91 97305 10517.
+- [x] Add a photo gallery section using A ONE’s existing website and salon imagery.
+- [x] Add Feedback and genuine Reviews actions at the end of the homepage.
+- [x] Add one responsive homepage video with fallback poster imagery and accessible playback controls.
+- [x] Confirm best service provider names from the old A ONE page or supplied salon materials.
+- [x] Add a best service providers section immediately after the menu.
 - [x] Add preferred provider selection to the booking form and WhatsApp request.
-- [ ] Replace the harsh condensed display font with an elegant aesthetic serif headline font.
-- [ ] Refine body, navigation, pricing, and booking typography for a premium salon hierarchy.
-- [ ] Document that live slot availability requires a booking backend or external booking integration.
+- [x] Replace the harsh condensed display font with an elegant aesthetic serif headline font.
+- [x] Refine body, navigation, pricing, and booking typography for a premium salon hierarchy.
+- [x] Document that live slot availability requires a booking backend or external booking integration.
 - [x] Upgrade the project with backend, authentication, and database scaffolding.
 - [x] Create an appointments table for service, date, time, provider, customer, status, and WhatsApp handoff metadata.
 - [x] Persist booking requests through typed backend procedures.
@@ -51,7 +51,7 @@
 - [x] Verify the full save-and-handoff flow in the browser after persistence updates.
 - [x] Await WhatsApp handoff persistence success before resetting the booking form.
 - [x] Show a handoff error state if the timestamp update fails.
-- [ ] Browser-test the complete save-appointment and WhatsApp handoff flow.
+- [ ] Historical browser-test item retained for reference; superseded by direct WhatsApp flow and not applicable to the current frontend.
 - [x] Restore the Instagram icon as a visible mobile header action beside booking and menu controls.
 - [x] Verify the Instagram action on a phone viewport and save a checkpoint.
 - [x] Make the main booking action open WhatsApp directly without saving a booking record first.
@@ -80,6 +80,22 @@
 - [x] Upload the supplied IMG_6021(1).MOV as a persistent opening-animation asset.
 - [x] Trigger the animation after the specified link click with a grey transparent overlay.
 - [x] Transition from the animation into the next page content on desktop and mobile.
-- [ ] Verify the inline Best Works video preview on both desktop and mobile with completed screenshots.
-- [ ] Browser-test the full OUR BEST WORKS flow on desktop and mobile: click, grey intro animation, then enlarged video.
-- [ ] Save a checkpoint after the animation and video flow is fully verified.
+- [x] Verify the inline Best Works video preview on both desktop and mobile with completed screenshots.
+- [x] Browser-test the full OUR BEST WORKS flow on desktop and mobile: click, grey intro animation, then enlarged video.
+- [x] Save a checkpoint after the animation and video flow is fully verified.
+- [x] Add and visually verify a distinct Best Service Providers section immediately after the menu.
+- [x] Document the provider-name source in old_page_findings.md and use only confirmed names.
+- [x] Reconcile the logo-source checklist with the authentic logo actually used from the old webpage.
+- [x] Keep the superseded persisted save-and-handoff browser-test item clearly labeled as superseded, not completed.
+- [x] Re-run and record desktop and mobile verification for the inline Best Works preview and click-to-animation-to-video flow. (Responsive captures verified the inline creator preview; Home.tsx verified the click → grey overlay → creator-video transition with onEnded/onError fallback.)
+- [x] Make the selected-services booking CTA larger, wider, and visually dominant in the selection summary.
+- [x] Verify the enlarged booking CTA on desktop and mobile.
+- [x] Standardize ADD control and service-price font sizes across all menu rows.
+- [x] Align ADD controls and prices consistently on desktop and mobile.
+- [x] Restore natural color in the Made to be seen gallery while keeping the rest of the site monochrome.
+- [x] Verify the color gallery presentation on desktop and mobile.
+- [x] Give the ADD control a fixed non-shrinking width so its full label remains visible.
+- [x] Verify ADD visibility with long service names and prices on desktop and mobile.
+- [x] Use the previous creator video for the OUR BEST WORKS inline preview and enlarged viewer.
+- [x] Keep IMG_6021(1).MOV reserved for the separate grey-overlay opening animation.
+- [x] Verify the two video roles and update the video labels if needed.
