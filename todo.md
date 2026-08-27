@@ -12,6 +12,8 @@
 - [ ] Revise the homepage visual direction and content hierarchy based on the reference.
 - [ ] Implement the revised homepage while preserving service, package, membership, and location information.
 - [ ] Add a photo-led full service menu with category tabs, service images, prices, and mobile-friendly browsing.
+- [ ] Keep the salon menu separated into distinct service category panels instead of combining categories.
+- [ ] Make each service row clickable and pass the selected service directly into the booking form.
 - [ ] Add stronger interactive hooks: animated offer spotlight, category switching, hover motion, and repeated booking prompts.
 - [ ] Use the SalonBook PDF front-page artwork as a prominent homepage visual.
 - [ ] Reset all accent colors to black, white, and neutral grey only.
@@ -25,6 +27,8 @@
 - [ ] Restore and expand the time-slot picker with a broader daily schedule.
 - [ ] Make the booking card, slot buttons, labels, and confirmation state more aesthetic.
 - [ ] Make the booking confirmation and WhatsApp message use the customer’s selected time slot.
+- [ ] Replace the fixed service dropdown with a manual service-entry field.
+- [ ] Preserve clickable menu prefilling into the manual service field.
 - [ ] Replace the harsh condensed display font with an elegant aesthetic serif headline font.
 - [ ] Refine body, navigation, pricing, and booking typography for a premium salon hierarchy.
 - [ ] Document that live slot availability requires a booking backend or external booking integration.
