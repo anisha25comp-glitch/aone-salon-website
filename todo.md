@@ -101,3 +101,4 @@
 - [x] Verify the two video roles and update the video labels if needed.
 - [x] Restore and verify the visible ADD label on every unselected service row, including mobile layouts.
 - [x] Fix the ADD label overlap by giving service names, prices, and ADD controls separate readable columns on desktop and mobile.
+- [x] Stack the mobile service-row price above the ADD action in a dedicated right-side column and restore clean alignment.

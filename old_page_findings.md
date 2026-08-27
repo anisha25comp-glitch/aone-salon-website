@@ -37,3 +37,5 @@ Desktop and mobile captures confirm that Best Service Providers now appears dire
 ## ADD Control Regression Fix
 
 After the overlap report, the service-row grid was corrected so the service name, price, ADD label, and arrow occupy separate columns with fixed minimum widths. Fresh desktop and phone captures confirm the ADD label remains present and does not overlap the price.
+
+The phone layout was refined again so each row keeps the service name aligned on the left while the rate appears above the ADD action in a dedicated right-side column. Desktop retains the original one-line row treatment; fresh phone and desktop captures show clean alignment.
