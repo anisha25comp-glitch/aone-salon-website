@@ -16,5 +16,11 @@
 - [ ] Use the SalonBook PDF front-page artwork as a prominent homepage visual.
 - [ ] Reset all accent colors to black, white, and neutral grey only.
 - [ ] Extract and use the original A ONE scissors logo treatment from the SalonBook cover.
+- [ ] Increase the authentic logo size and integrate it into the header with intentional framing and spacing.
 - [ ] Map the booklet’s brand message, service categories, packages, memberships, and pricing into the website content.
 - [ ] Verify desktop and mobile presentation and save an updated checkpoint.
+- [ ] Add an appointment booking flow with service, date, time slot, and customer fields.
+- [ ] Add clear validation, confirmation feedback, and WhatsApp handoff to 9730510517.
+- [ ] Replace the harsh condensed display font with an elegant aesthetic serif headline font.
+- [ ] Refine body, navigation, pricing, and booking typography for a premium salon hierarchy.
+- [ ] Document that live slot availability requires a booking backend or external booking integration.
