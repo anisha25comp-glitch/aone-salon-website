@@ -59,3 +59,7 @@ The Booking section was moved to immediately follow Best Service Providers. The 
 ## Creator Video Playback Refinement
 
 The creator video now presents in a 4:3 frame on desktop and mobile. The inline preview remains muted for autoplay, while tapping it opens a controls-enabled video without the grey opening overlay, allowing sound playback from the user interaction. Fresh phone and desktop captures confirm the updated 4:3 presentation.
+
+## Final IMG_5997 Muted Video Update
+
+The newly attached `IMG_5997.MOV` was converted to a browser-compatible muted MP4 and is now used for both creator-video instances. Both video elements are explicitly muted, the booklet-cover poster was removed from the video presentation, and the creator-video gradient/shadow overlay was disabled. Fresh phone and desktop captures confirm the clean presentation.

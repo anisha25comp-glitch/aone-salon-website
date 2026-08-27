@@ -76,3 +76,6 @@
 
 /* Creator video: 4:3 presentation, direct tap playback, and no grey overlay. */
 .best-works-preview{height:auto;aspect-ratio:4 / 3;background:#111}.best-works-preview video{object-fit:contain;background:#111}.video-lightbox{background:#111}.video-lightbox video{width:min(100%,960px);height:auto;aspect-ratio:4 / 3;object-fit:contain;background:#000}@media(max-width:640px){.best-works-preview{height:auto;aspect-ratio:4 / 3}.video-lightbox{background:#111;padding:12px}.video-lightbox video{width:100%;height:auto;aspect-ratio:4 / 3;max-height:76vh}}
+
+/* Final creator-video cleanup: no grey overlay, gradient, or shadow. */
+.best-works-preview::after{display:none!important}.best-works-preview video{opacity:1;filter:none}.video-lightbox video{box-shadow:none}.video-lightbox{background:#000}

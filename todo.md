@@ -108,3 +108,5 @@
 - [x] Remove all BOOK THIS CATEGORY buttons and keep only the final All Options booking action after the menu.
 - [x] Make the creator video 4:3, enable sound after tapping, and remove the grey overlay from that creator-video interaction.
 - [x] Move the Booking section directly below Best Service Providers and preserve the existing WhatsApp booking behavior.
+- [x] Remove the remaining grey overlap from the creator video and make sound reliably available after tapping the video. (Superseded by the later muted-video request.)
+- [x] Replace the creator video with the newly attached IMG_5997.MOV, keep it muted, and remove the logo/branding overlay from its presentation.
