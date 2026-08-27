@@ -51,3 +51,11 @@ The attached `IMG_5997.MOV` was staged, converted from HEVC to browser-compatibl
 The creator video was subsequently replaced with the newly attached `IMG_6021(3).MOV`, converted from HEVC to H.264 MP4 for reliable browser playback, and mapped to both creator-video source elements. The separate opening animation source remains unchanged. Fresh phone and desktop captures confirm the navigation and creator section remain present after the replacement.
 
 A final phone and desktop verification was completed after the asset swap. The creator section remains labeled “CREATOR’S PERSONAL FAVOURITE,” the new IMG_6021(3)-derived asset is the only creator-video source referenced by Home.tsx, and the opening animation remains mapped to its separate asset.
+
+The category-level BOOK THIS CATEGORY buttons were removed from all four menu cards. The only menu-level booking action now appears after the complete menu as ALL OPTIONS / BOOK APPOINTMENT; fresh phone and desktop captures confirm the final action remains visible.
+
+The Booking section was moved to immediately follow Best Service Providers. The provider cards remain directly above the booking form on both phone and desktop layouts, and the existing WhatsApp submission behavior is unchanged.
+
+## Creator Video Playback Refinement
+
+The creator video now presents in a 4:3 frame on desktop and mobile. The inline preview remains muted for autoplay, while tapping it opens a controls-enabled video without the grey opening overlay, allowing sound playback from the user interaction. Fresh phone and desktop captures confirm the updated 4:3 presentation.

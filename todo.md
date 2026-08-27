@@ -105,3 +105,6 @@
 - [x] Remove the arrow after ADD, keep mobile prices on one line, rename the creator video label, and remove the extra white video button block.
 - [x] Add Special Offers and Full Packages actions beside Locate Us, add an All Options booking action after the menu, and replace the creator video with the attached IMG_5997.MOV. (Superseded by the later IMG_6021(3).MOV replacement.)
 - [x] Replace the creator video with the newly attached IMG_6021(3).MOV and verify the opening animation remains separate.
+- [x] Remove all BOOK THIS CATEGORY buttons and keep only the final All Options booking action after the menu.
+- [x] Make the creator video 4:3, enable sound after tapping, and remove the grey overlay from that creator-video interaction.
+- [x] Move the Booking section directly below Best Service Providers and preserve the existing WhatsApp booking behavior.
