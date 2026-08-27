@@ -88,3 +88,23 @@ The existing opening-animation asset is now shown immediately on first site load
 ## Corrected Logo-Area Video Intro Verification
 
 The first-load intro now uses the same IMG_5997-derived muted video that was previously placed in the logo area, showing the A ONE logo artwork immediately when the Manus link opens. The authentic A ONE logo image is restored in the header after the intro, and the separate creator video remains mapped to IMG_6021(3). Fresh phone and desktop captures confirm the corrected asset roles.
+
+
+## Fast Opening Intro Verification
+
+The opening video now autoplays at 2× speed without visible playback controls or a Skip Intro overlay. The entire intro surface is tap-to-dismiss, and the video also closes automatically on end or playback error. Fresh phone and desktop captures confirm the homepage reveals cleanly with the authentic A ONE logo restored in the header.
+
+
+## Creator Sound-on-Tap and 2× Intro Verification
+
+The creator preview remains muted inline. Opening it by tapping uses the native enlarged player, explicitly removes mute, sets full volume, and provides a TURN SOUND ON fallback if browser autoplay policy blocks the first unmuted play. The first-load intro is control-free, plays at 2×, and dismisses on any tap. Fresh phone and desktop captures confirm the homepage remains intact after the intro.
+
+
+## Opening Video Logo-Emergence Verification
+
+The 2× opening video now transitions into an authentic A ONE logo phase for approximately 900 milliseconds before the homepage is revealed. The logo uses a subtle scale-and-blur emergence effect on a clean black surface; tapping anywhere still dismisses immediately. Desktop and mobile captures confirm the homepage returns cleanly with the authentic header logo.
+
+
+## Faster Intro and Grey Logo Phase Verification
+
+The first-load intro now runs at 3× playback speed. Its video phase remains clean and control-free, while the end logo-emergence phase uses a subtle translucent grey background and a short scale/blur reveal before the homepage appears. Mobile and desktop captures confirm the homepage remains intact after the faster handoff.

@@ -113,3 +113,7 @@
 - [x] Restore the creator video asset and use the attached IMG_5997.MOV only for the first-page artwork/logo area.
 - [x] Restore the authentic header logo and show the requested opening video immediately on first site load before revealing the homepage.
 - [x] Use the same video previously placed in the logo area as the first-load opening video, restore the authentic header logo, and keep the creator video separate.
+- [x] Keep the creator preview muted and explicitly enable sound only after the creator video is opened by tapping it.
+- [x] Set the first-load opening video to 2× playback speed while preserving tap-anywhere dismissal.
+- [x] Add an end transition where the opening video resolves into the authentic A ONE logo before revealing the homepage.
+- [x] Increase the opening video speed beyond 2× and add a subtle grey transparent background to the logo-emergence phase.
