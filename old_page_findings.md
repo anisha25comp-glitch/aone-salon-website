@@ -39,3 +39,15 @@ Desktop and mobile captures confirm that Best Service Providers now appears dire
 After the overlap report, the service-row grid was corrected so the service name, price, ADD label, and arrow occupy separate columns with fixed minimum widths. Fresh desktop and phone captures confirm the ADD label remains present and does not overlap the price.
 
 The phone layout was refined again so each row keeps the service name aligned on the left while the rate appears above the ADD action in a dedicated right-side column. Desktop retains the original one-line row treatment; fresh phone and desktop captures show clean alignment.
+
+## Creator Favourite and Mobile Menu Cleanup
+
+The creator video was re-uploaded and mapped to the Best Works inline preview and lightbox using the new persistent asset path. The visible label now reads “CREATOR’S PERSONAL FAVOURITE”; the separate OPEN FULL VIDEO white block was removed. Mobile menu rows now keep rates on one line, place ADD beneath the rate, and hide the trailing row arrow. Fresh phone and desktop captures were completed after the change.
+
+## Navigation and Attached Creator Video Update
+
+The attached `IMG_5997.MOV` was staged, converted from HEVC to browser-compatible MP4, uploaded as a persistent asset, and mapped to both the inline creator video and its lightbox. The hero now includes Special Offers and Full Packages actions after Locate Us. A new All Options / Book Appointment action appears at the end of the menu and carries the selected services into the booking field when present. Fresh phone and desktop captures confirm the updated layout.
+
+The creator video was subsequently replaced with the newly attached `IMG_6021(3).MOV`, converted from HEVC to H.264 MP4 for reliable browser playback, and mapped to both creator-video source elements. The separate opening animation source remains unchanged. Fresh phone and desktop captures confirm the navigation and creator section remain present after the replacement.
+
+A final phone and desktop verification was completed after the asset swap. The creator section remains labeled “CREATOR’S PERSONAL FAVOURITE,” the new IMG_6021(3)-derived asset is the only creator-video source referenced by Home.tsx, and the opening animation remains mapped to its separate asset.

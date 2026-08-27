@@ -102,3 +102,6 @@
 - [x] Restore and verify the visible ADD label on every unselected service row, including mobile layouts.
 - [x] Fix the ADD label overlap by giving service names, prices, and ADD controls separate readable columns on desktop and mobile.
 - [x] Stack the mobile service-row price above the ADD action in a dedicated right-side column and restore clean alignment.
+- [x] Remove the arrow after ADD, keep mobile prices on one line, rename the creator video label, and remove the extra white video button block.
+- [x] Add Special Offers and Full Packages actions beside Locate Us, add an All Options booking action after the menu, and replace the creator video with the attached IMG_5997.MOV. (Superseded by the later IMG_6021(3).MOV replacement.)
+- [x] Replace the creator video with the newly attached IMG_6021(3).MOV and verify the opening animation remains separate.
