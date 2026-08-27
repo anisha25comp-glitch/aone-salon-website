@@ -99,3 +99,5 @@
 - [x] Use the previous creator video for the OUR BEST WORKS inline preview and enlarged viewer.
 - [x] Keep IMG_6021(1).MOV reserved for the separate grey-overlay opening animation.
 - [x] Verify the two video roles and update the video labels if needed.
+- [x] Restore and verify the visible ADD label on every unselected service row, including mobile layouts.
+- [x] Fix the ADD label overlap by giving service names, prices, and ADD controls separate readable columns on desktop and mobile.

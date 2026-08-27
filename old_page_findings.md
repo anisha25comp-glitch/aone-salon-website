@@ -33,3 +33,7 @@ The final desktop and mobile responsive captures were re-run after the menu/prov
 ## Final UI Verification
 
 Desktop and mobile captures confirm that Best Service Providers now appears directly after the four-section menu with Sakshi, Faiz, and Priti, and each provider card can route into booking. The Made to be seen gallery now retains natural color. Menu ADD controls and prices have dedicated layout space for consistent visibility, including on mobile.
+
+## ADD Control Regression Fix
+
+After the overlap report, the service-row grid was corrected so the service name, price, ADD label, and arrow occupy separate columns with fixed minimum widths. Fresh desktop and phone captures confirm the ADD label remains present and does not overlap the price.
