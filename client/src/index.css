@@ -88,3 +88,6 @@
 
 /* Keep the first-page replacement video inside the same fixed logo frame as the original mark. */
 .ig-mark video{width:130px;height:48px;object-fit:cover;display:block}@media(max-width:640px){.ig-mark video{width:106px;height:40px}}
+
+/* First-load opening video: full-screen black intro before the homepage is revealed. */
+.opening-intro{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;background:#000;color:#fff}.opening-intro-video{display:block;width:100%;height:100%;object-fit:cover;background:#000}.opening-intro-ui{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px 5vw;background:linear-gradient(0deg,rgba(0,0,0,.76),transparent);font:800 10px var(--geo);letter-spacing:.12em}.opening-intro-ui button{display:inline-flex;align-items:center;gap:8px;padding:12px 14px;border:1px solid rgba(255,255,255,.65);background:rgba(0,0,0,.35);color:#fff;font:800 9px var(--geo);letter-spacing:.1em}.opening-intro-ui button:hover{background:#fff;color:#111}@media(max-width:640px){.opening-intro-ui{padding:18px 7vw;font-size:8px}.opening-intro-ui button{padding:10px 11px;font-size:8px}}

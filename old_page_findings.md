@@ -78,3 +78,8 @@ The attached IMG_5997-derived muted video is now confined to the actual first-pa
 ## Final Corrected Asset-Role Capture
 
 Fresh mobile and desktop captures confirm the attached IMG_5997-derived muted video is confined to the first-page header logo frame without the prior oversized overlap. The original booklet-cover artwork is restored, and the creator favourite preview/lightbox remain mapped to the separate IMG_6021(3)-derived video. The booking/provider order and existing navigation remain intact.
+
+
+## First-Load Opening Video Verification
+
+The existing opening-animation asset is now shown immediately on first site load in a full-screen black video intro, with a visible Skip Intro control and automatic handoff to the homepage when playback ends or fails. The authentic A ONE logo is restored in the header; the creator favourite video remains separate. Fresh mobile and desktop captures confirm the opening intro appears first and the layout remains responsive.
