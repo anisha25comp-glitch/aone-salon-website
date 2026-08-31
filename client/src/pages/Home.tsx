@@ -1,5 +1,7 @@
 // A ONE Salon homepage: monochrome luxury typography, authentic branding, separate service menus, and direct appointment booking.
 import { useEffect, useState } from "react";
+import { useAuth } from "@/_core/hooks/useAuth";
+import { trpc } from "@/lib/trpc";
 import { ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, Clock3, Instagram, MapPin, Menu, Phone, Sparkles, Star, Users, X } from "lucide-react";
 
 const heroSlides = [
@@ -46,10 +48,17 @@ const subsectionFor = (category: Category, service: string) => {
 };
 
 export default function Home() {
+  const { user } = useAuth({ redirectOnUnauthenticated: false });
+  const publicActivityQuery = trpc.appointments.publicSummary.useQuery(undefined, { retry: false });
+  const publicCountQuery = trpc.appointments.publicCount.useQuery(undefined, { retry: false });
+  const adminActivityQuery = trpc.appointments.list.useQuery(undefined, { enabled: user?.role === "admin", retry: false });
+  const createAppointmentMutation = trpc.appointments.create.useMutation();
+  const markWhatsappSentMutation = trpc.appointments.markWhatsappSent.useMutation();
   const [slide, setSlide] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const [videoOpen, setVideoOpen] = useState(false);
   const [creatorAudioBlocked, setCreatorAudioBlocked] = useState(false);
+  const [bookingStatus, setBookingStatus] = useState<"idle" | "recording" | "error">("idle");
   const [bookingService, setBookingService] = useState("");
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [bookingProvider, setBookingProvider] = useState("Any available provider");
@@ -68,10 +77,33 @@ export default function Home() {
       return next;
     });
   };
-  const submitBooking = (event: React.FormEvent<HTMLFormElement>) => {
+  const submitBooking = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setBookingStatus("recording");
     window.open(whatsappBooking, "_blank", "noopener,noreferrer");
-    window.setTimeout(() => window.location.reload(), 700);
+    try {
+      const created = await createAppointmentMutation.mutateAsync({
+        service: bookingService,
+        appointmentDate: bookingDate,
+        timeSlot: bookingTime,
+        provider: bookingProvider,
+        customerName: bookingName,
+        customerPhone: bookingPhone,
+      });
+      await markWhatsappSentMutation.mutateAsync({ id: created.appointmentId });
+      await publicActivityQuery.refetch();
+      await publicCountQuery.refetch();
+      if (user?.role === "admin") await adminActivityQuery.refetch();
+      setBookingService("");
+      setSelectedServices([]);
+      setBookingDate("");
+      setBookingTime("");
+      setBookingName("");
+      setBookingPhone("");
+      setBookingStatus("idle");
+    } catch {
+      setBookingStatus("error");
+    }
   };
   useEffect(() => { const timer = window.setInterval(() => setSlide((n) => (n + 1) % heroSlides.length), 6500); return () => window.clearInterval(timer); }, []);
 
@@ -89,7 +121,9 @@ export default function Home() {
 
     <section className="providers-section" id="providers"><div className="providers-head"><div><span className="mini-label">02 / THE TEAM</span><h2>Best service<br /><b>providers.</b></h2></div><p>Meet the A ONE team. Choose a preferred provider when you send your appointment request, or let us match you with the right person.</p></div><div className="provider-grid">{providers.slice(1).map((provider, index) => { const role = provider === "Faiz" || provider === "Sarang" ? "Hair dresser" : "Beautician"; return <article className="provider-card" key={provider}><div className="provider-avatar" aria-hidden="true">{provider.slice(0, 1)}</div><div className="provider-number">0{index + 1}</div><h3>{provider}</h3><span>{role}</span><button onClick={() => { setBookingProvider(provider); go("book"); }}>CHOOSE {provider.toUpperCase()} <ArrowUpRight size={15} /></button></article>; })}</div></section>
 
-    <section className="booking-section" id="book"><div className="booking-intro"><span className="mini-label">05 / BOOK YOUR SLOT</span><h2>Make time<br /><b>for you.</b></h2><p>Choose your service, preferred day and a time that works. We’ll confirm your appointment on WhatsApp.</p><div className="booking-note"><Clock3 size={17} /> Expanded schedule · confirmation by A ONE team</div></div><div className="booking-card"><form onSubmit={submitBooking}><label>SERVICE YOU WANT<input type="text" placeholder="Type a service or choose one from the menu" value={bookingService} onChange={(event) => setBookingService(event.target.value)} required /></label><label>CHOOSE DATE<input type="date" min={minBookingDate} value={bookingDate} onChange={(event) => setBookingDate(event.target.value)} required /></label><label>CHOOSE YOUR PROVIDER<select value={bookingProvider} onChange={(event) => setBookingProvider(event.target.value)}>{providers.map((provider) => <option key={provider} value={provider}>{provider}</option>)}</select></label><fieldset><legend>CHOOSE TIME</legend><div className="time-slots">{timeSlots.map((time) => <button type="button" key={time} className={bookingTime === time ? "time-slot selected" : "time-slot"} onClick={() => setBookingTime(time)}>{time}</button>)}</div>{!bookingTime && <small>Select an available time slot</small>}</fieldset><div className="booking-fields"><label>YOUR NAME<input type="text" placeholder="Full name" value={bookingName} onChange={(event) => setBookingName(event.target.value)} required /></label><label>PHONE NUMBER<input type="tel" placeholder="10-digit number" pattern="[0-9]{10}" value={bookingPhone} onChange={(event) => setBookingPhone(event.target.value)} required /></label></div><button className="booking-submit" type="submit" disabled={!bookingTime || !bookingService.trim()}>OPEN WHATSAPP & BOOK <ArrowRight size={17} /></button><p className="booking-disclaimer">WhatsApp opens with your appointment details ready to send. A ONE confirms the request directly.</p></form></div></section>
+    <section className="booking-section" id="book"><div className="booking-intro"><span className="mini-label">05 / BOOK YOUR SLOT</span><h2>Make time<br /><b>for you.</b></h2><p>Choose your service, preferred day and a time that works. We’ll confirm your appointment on WhatsApp.</p><div className="booking-note"><Clock3 size={17} /> Expanded schedule · confirmation by A ONE team</div></div><div className="booking-card"><form onSubmit={submitBooking}><label>SERVICE YOU WANT<input type="text" placeholder="Type a service or choose one from the menu" value={bookingService} onChange={(event) => setBookingService(event.target.value)} required /></label><label>CHOOSE DATE<input type="date" min={minBookingDate} value={bookingDate} onChange={(event) => setBookingDate(event.target.value)} required /></label><label>CHOOSE YOUR PROVIDER<select value={bookingProvider} onChange={(event) => setBookingProvider(event.target.value)}>{providers.map((provider) => <option key={provider} value={provider}>{provider}</option>)}</select></label><fieldset><legend>CHOOSE TIME</legend><div className="time-slots">{timeSlots.map((time) => <button type="button" key={time} className={bookingTime === time ? "time-slot selected" : "time-slot"} onClick={() => setBookingTime(time)}>{time}</button>)}</div>{!bookingTime && <small>Select an available time slot</small>}</fieldset><div className="booking-fields"><label>YOUR NAME<input type="text" placeholder="Full name" value={bookingName} onChange={(event) => setBookingName(event.target.value)} required /></label><label>PHONE NUMBER<input type="tel" placeholder="10-digit number" pattern="[0-9]{10}" value={bookingPhone} onChange={(event) => setBookingPhone(event.target.value)} required /></label></div><button className="booking-submit" type="submit" disabled={!bookingTime || !bookingService.trim() || bookingStatus === "recording"}>{bookingStatus === "recording" ? "RECORDING HANDOFF…" : "OPEN WHATSAPP & BOOK"} <ArrowRight size={17} /></button><p className="booking-disclaimer">WhatsApp opens with your appointment details ready to send. A ONE confirms the request directly.</p>{bookingStatus === "error" && <p className="booking-error">WhatsApp opened, but this handoff could not be added to the activity list. Please contact A ONE directly if needed.</p>}</form></div></section>
+
+    <section className="booking-activity-section" id="booking-activity"><div className="activity-head"><div><span className="mini-label">06 / BOOKING ACTIVITY</span><h2>Recent<br /><b>requests.</b></h2></div><p>Public activity shows appointment timing and handoff time only. Customer phone numbers are visible only to signed-in A ONE admins.</p></div><div className="activity-summary"><strong>{publicCountQuery.data ?? 0}</strong><span>WhatsApp handoffs recorded</span></div>{publicActivityQuery.isLoading ? <p className="activity-empty">Loading booking activity…</p> : publicActivityQuery.data?.length ? <div className="activity-list">{publicActivityQuery.data.map((appointment) => <article className="activity-row" key={appointment.id}><div><strong>{appointment.service}</strong><span>{appointment.provider} · {new Date(`${String(appointment.appointmentDate).slice(0, 10)}T00:00:00`).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })} · {appointment.timeSlot}</span></div><div><strong>HANDOFF</strong><span>{appointment.whatsappSentAt ? new Date(appointment.whatsappSentAt).toLocaleTimeString("en-IN", { hour: "numeric", minute: "2-digit" }) : "Pending"}</span></div>{user?.role === "admin" && <div className="activity-admin-phone"><strong>ADMIN PHONE</strong><span>{adminActivityQuery.data?.find((record) => record.id === appointment.id)?.customerPhone ?? "Loading…"}</span></div>}</article>)}</div> : <p className="activity-empty">No WhatsApp booking handoffs have been recorded yet.</p>}{user?.role === "admin" && <p className="activity-admin-note">Admin view enabled. Customer numbers are shown only in this signed-in admin view.</p>}</section>
 
     <section className="gallery-section" id="gallery"><div className="gallery-head"><div><span className="mini-label">02 / OUR WORK</span><h2>Made to be<br /><b>seen.</b></h2></div><a className="gallery-instagram" href="https://www.instagram.com/aone_salon_spa/" target="_blank" rel="noreferrer">SEE MORE ON INSTAGRAM <Instagram size={15} /></a></div><div className="gallery-grid">{galleryImages.map((image, index) => <figure className={`gallery-tile gallery-tile-${index + 1}`} key={image.src}><img src={image.src} alt={`A ONE Salon ${image.label.toLowerCase()}`} /><figcaption>{image.label}<span>0{index + 1}</span></figcaption></figure>)}</div></section>
 

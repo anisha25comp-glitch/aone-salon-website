@@ -1,4 +1,4 @@
-import { eq } from "drizzle-orm";
+import { count, desc, eq, isNotNull } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import { Appointment, InsertAppointment, InsertUser, appointments, users } from "../drizzle/schema";
 import { ENV } from './_core/env';
@@ -118,4 +118,37 @@ export async function getAppointments() {
     throw new Error("Database is not available");
   }
   return db.select().from(appointments);
+}
+
+export async function getPublicAppointments() {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database is not available");
+  }
+  return db
+    .select({
+      id: appointments.id,
+      service: appointments.service,
+      appointmentDate: appointments.appointmentDate,
+      timeSlot: appointments.timeSlot,
+      provider: appointments.provider,
+      whatsappSentAt: appointments.whatsappSentAt,
+      createdAt: appointments.createdAt,
+    })
+    .from(appointments)
+    .where(isNotNull(appointments.whatsappSentAt))
+    .orderBy(desc(appointments.createdAt))
+    .limit(50);
+}
+
+export async function getPublicAppointmentCount() {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database is not available");
+  }
+  const result = await db
+    .select({ count: count(appointments.id) })
+    .from(appointments)
+    .where(isNotNull(appointments.whatsappSentAt));
+  return Number(result[0]?.count ?? 0);
 }

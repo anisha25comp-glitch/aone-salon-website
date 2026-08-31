@@ -113,3 +113,8 @@ The first-load intro now runs at 3× playback speed. Its video phase remains cle
 ## Updated Provider Roster Verification
 
 Per the owner's latest confirmation, the provider roster now excludes Sakshi and Priti. The homepage provider cards and booking selector use **Faiz**, **Divya — Beautician**, and **Sarang — Hair dresser**, plus the neutral Any available provider option. Full-page mobile and desktop captures, source assertions, Vitest, TypeScript, and production build checks passed.
+
+
+## Booking Activity Verification
+
+The Booking Activity section now follows the Booking section directly. It exposes only the number of recorded WhatsApp handoffs, appointment date/time, provider, service, and handoff time to the public. Customer phone numbers are selected only from the admin-protected appointment list and rendered when the signed-in user has role `admin`. Mobile and desktop full-page captures were checked; the empty-state view is clean when no handoffs exist. Vitest, TypeScript, and production build passed.

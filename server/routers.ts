@@ -2,7 +2,7 @@ import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { adminProcedure, publicProcedure, router } from "./_core/trpc";
-import { createAppointment, getAppointments, markAppointmentWhatsappSent } from "./db";
+import { createAppointment, getAppointments, getPublicAppointmentCount, getPublicAppointments, markAppointmentWhatsappSent } from "./db";
 import { z } from "zod";
 
 export const appRouter = router({
@@ -43,6 +43,8 @@ export const appRouter = router({
         await markAppointmentWhatsappSent(input.id);
         return { success: true as const };
       }),
+    publicSummary: publicProcedure.query(() => getPublicAppointments()),
+    publicCount: publicProcedure.query(() => getPublicAppointmentCount()),
     list: adminProcedure.query(() => getAppointments()),
   }),
 });

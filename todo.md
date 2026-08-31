@@ -119,3 +119,6 @@
 - [x] Increase the opening video speed beyond 2× and add a subtle grey transparent background to the logo-emergence phase.
 - [x] Remove the first-load A ONE intro video so the website opens directly on the homepage while preserving the header logo and creator video.
 - [x] Replace Sakshi and Priti with Divya (Beautician) and Sarang (Hair Dresser) in the provider section and booking options.
+- [x] Add a Booking activity section below Booking with public counts/times and admin-only customer phone numbers, recording each WhatsApp handoff.
+- [x] Refetch or invalidate the admin appointment list after a successful WhatsApp handoff so new phone numbers appear immediately.
+- [x] Add a true total WhatsApp handoff count endpoint instead of deriving the count from the latest 50 public records.
