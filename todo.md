@@ -122,3 +122,4 @@
 - [x] Add a Booking activity section below Booking with public counts/times and admin-only customer phone numbers, recording each WhatsApp handoff.
 - [x] Refetch or invalidate the admin appointment list after a successful WhatsApp handoff so new phone numbers appear immediately.
 - [x] Add a true total WhatsApp handoff count endpoint instead of deriving the count from the latest 50 public records.
+- [x] Remove the public Booking Activity explanatory copy while preserving the admin-only phone protection.
