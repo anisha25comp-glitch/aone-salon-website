@@ -123,3 +123,5 @@
 - [x] Refetch or invalidate the admin appointment list after a successful WhatsApp handoff so new phone numbers appear immediately.
 - [x] Add a true total WhatsApp handoff count endpoint instead of deriving the count from the latest 50 public records.
 - [x] Remove the public Booking Activity explanatory copy while preserving the admin-only phone protection.
+- [x] Add the supplied Facial and Hydra service options and prices to the photo-led menu with booking selection support.
+- [x] Automatically hide the limited ₹1,499 offer after 31 August while preserving the regular menu and booking flow.
