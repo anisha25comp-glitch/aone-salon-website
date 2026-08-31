@@ -125,3 +125,4 @@
 - [x] Remove the public Booking Activity explanatory copy while preserving the admin-only phone protection.
 - [x] Add the supplied Facial and Hydra service options and prices to the photo-led menu with booking selection support.
 - [x] Automatically hide the limited ₹1,499 offer after 31 August while preserving the regular menu and booking flow.
+- [x] Split Facial and Hydra prices into separate labeled columns in the Skin & Beauty menu while preserving booking selection.
