@@ -142,7 +142,7 @@ export default function Home() {
 
     <section className="booklet-feature">
   <div className="booklet-cover">
-<img src="https://dummyimage.com/800x600/111827/ffffff.png&text=A+ONE+Salon" alt="A ONE Salon" />
+<div style={{ width: '100%', height: '400px', backgroundColor: '#111827', color: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px', fontWeight: 'bold', borderRadius: '8px' }}>A ONE Salon Booklet</div>
       <span className="mini-label">FROM THE A ONE BOOK</span>
       <h2>The look<br /><b>starts here.</b></h2>
       <p>Hair treatment, hair cutting, spa and beauty care — all the A ONE details, now easier to explore online.</p>
