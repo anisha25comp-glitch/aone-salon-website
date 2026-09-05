@@ -142,8 +142,7 @@ export default function Home() {
 
     <section className="booklet-feature">
   <div className="booklet-cover">
-<div style={{ width: '100%', height: '400px', backgroundColor: '#111827', color: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px', fontWeight: 'bold', borderRadius: '8px' }}>A ONE Salon Booklet</div>
-      <span className="mini-label">FROM THE A ONE BOOK</span>
+<a href="/Salon Book_compressed.pdf" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', padding: '12px 24px', backgroundColor: '#111827', color: '#ffffff', borderRadius: '8px', textDecoration: 'none', fontWeight: 'bold' }}>View Salon Booklet (PDF)</a>
       <h2>The look<br /><b>starts here.</b></h2>
       <p>Hair treatment, hair cutting, spa and beauty care — all the A ONE details, now easier to explore online.</p>
       <div className="booklet-facts">
