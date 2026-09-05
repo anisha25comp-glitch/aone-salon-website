@@ -15,6 +15,6 @@ describe("creator video audio flow", () => {
   it("opens directly on the homepage with the authentic header logo", () => {
     expect(homeSource).not.toContain("introPlaying");
     expect(homeSource).not.toContain("opening-intro");
-    expect(homeSource).toContain('src="/manus-storage/aone-authentic-logo_d251e44f.jpg"');
+    expect(homeSource).toContain('src="/assets/aone-authentic-logo_d251e44f.jpg"');
   });
 });

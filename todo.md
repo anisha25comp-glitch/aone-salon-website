@@ -126,3 +126,4 @@
 - [x] Add the supplied Facial and Hydra service options and prices to the photo-led menu with booking selection support.
 - [x] Automatically hide the limited ₹1,499 offer after 31 August while preserving the regular menu and booking flow.
 - [x] Split Facial and Hydra prices into separate labeled columns in the Skin & Beauty menu while preserving booking selection.
+- [x] Audit and convert every image/video reference so the exported project is self-contained and Vercel-compatible without design changes.
