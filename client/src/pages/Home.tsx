@@ -152,5 +152,5 @@ export default function Home() {
 
     <section className="feedback-section"><div><span className="mini-label">07 / STAY CONNECTED</span><h2>Your visit.<br /><b>Your voice.</b></h2><p>Tell us how your A ONE experience felt, or explore genuine feedback from the A ONE community.</p></div><div className="feedback-actions"><a href="https://api.whatsapp.com/send?phone=919730510517&text=Hello%20A%20ONE%20Salon,%20I%20would%20like%20to%20share%20feedback%20about%20my%20visit." target="_blank" rel="noreferrer"><span>SHARE FEEDBACK</span><ArrowUpRight size={17} /></a><a href="https://maps.app.goo.gl/tZdJL9xggo6fZRxC8" target="_blank" rel="noreferrer"><span>READ REVIEWS</span><Star size={16} /></a></div></section>
     <footer className="ig-footer"><a className="ig-brand" href="#top"><span className="ig-mark"><img src="/aone-authentic-logo_d251e44f.jpg" alt="A ONE Unisex Salon and Beauty Parlour" /></span></a><span>MORE CARE, MORE BEAUTY, MORE CONFIDENCE.</span><a href="https://www.instagram.com/aone_salon_spa/" target="_blank" rel="noreferrer"><Instagram size={17} /> @aone_salon_spa</a></footer>
-  </main>;
+  </main>
 }
