@@ -142,7 +142,7 @@ export default function Home() {
 
     <section className="booklet-feature">
   <div className="booklet-cover">
- <img src="https://picsum.photos/800/600" alt="A ONE Unisex Salon and Beauty Parlour booklet cover" /></div>
+<img src="https://placehold.co/800x600/222222/ffffff/png?text=A+ONE+Salon" alt="A ONE Unisex Salon and Beauty Parlour booklet cover" /></div>
     <div className="booklet-copy">
       <span className="mini-label">FROM THE A ONE BOOK</span>
       <h2>The look<br /><b>starts here.</b></h2>
