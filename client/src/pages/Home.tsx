@@ -142,7 +142,7 @@ export default function Home() {
 
     <section className="booklet-feature">
   <div className="booklet-cover">
-<img src="https://placehold.co/800x600/222222/ffffff/png?text=A+ONE+Salon" alt="A ONE Unisex Salon and Beauty Parlour booklet cover" /></div>
+<img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'><rect width='100%' height='100%' fill='%23111827'/><text x='50%' y='50%' fill='%23f3f4f6' font-family='sans-serif' font-size='32' font-weight='bold' text-anchor='middle' dominant-baseline='middle'>A ONE Salon</text></svg>" alt="A ONE Salon" />
     <div className="booklet-copy">
       <span className="mini-label">FROM THE A ONE BOOK</span>
       <h2>The look<br /><b>starts here.</b></h2>
