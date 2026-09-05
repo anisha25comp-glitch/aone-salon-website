@@ -142,8 +142,11 @@ export default function Home() {
 
     <section className="booklet-feature">
   <div className="booklet-cover">
-<a href="/Salon Book_compressed.pdf" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', padding: '12px 24px', backgroundColor: '#111827', color: '#ffffff', borderRadius: '8px', textDecoration: 'none', fontWeight: 'bold' }}>View Salon Booklet (PDF)</a>
-      <h2>The look<br /><b>starts here.</b></h2>
+<div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '100%', maxWidth: '800px', margin: '0 auto' }}>
+  {Array.from({ length: 20 }, (_, i) => (
+    <img key={i} src={`/page_${i + 1}.jpg`} alt={`Salon Page ${i + 1}`} style={{ width: '100%', borderRadius: '8px' }} />
+  ))}
+</div>
       <p>Hair treatment, hair cutting, spa and beauty care — all the A ONE details, now easier to explore online.</p>
       <div className="booklet-facts">
         <span><strong>2023</strong>ESTABLISHED</span>
