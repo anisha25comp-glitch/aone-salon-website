@@ -127,3 +127,5 @@
 - [x] Automatically hide the limited ₹1,499 offer after 31 August while preserving the regular menu and booking flow.
 - [x] Split Facial and Hydra prices into separate labeled columns in the Skin & Beauty menu while preserving booking selection.
 - [x] Audit and convert every image/video reference so the exported project is self-contained and Vercel-compatible without design changes.
+- [x] Resolve the GitHub conflict by preserving the current A ONE homepage and merging only uploaded booklet/image files plus asset-loading fixes.
+- [x] Recompress the used creator video and booklet cover below repository limits without changing the current homepage design, then remove only unused duplicate booklet-gallery uploads from the deployable project.
