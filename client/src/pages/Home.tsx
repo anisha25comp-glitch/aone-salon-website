@@ -143,9 +143,17 @@ export default function Home() {
     <section className="booklet-feature">
   <div className="booklet-cover">
 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '100%', maxWidth: '800px', margin: '0 auto' }}>
-  {Array.from({ length: 20 }, (_, i) => (
-    <img key={i} src={`/page_${i + 1}.jpg`} alt={`Salon Page ${i + 1}`} style={{ width: '100%', borderRadius: '8px' }} />
-  ))}
+  {Array.from({ length: 20 }, (_, i) => {
+    const pageNum = String(i + 1).padStart(4, '0');
+    return (
+      <img 
+        key={i} 
+        src={`/Salon%20Book_compressed_page_${pageNum}.jpg`} 
+        alt={`Salon Page ${i + 1}`} 
+        style={{ width: '100%', borderRadius: '8px' }} 
+      />
+    );
+  })}
 </div>
       <p>Hair treatment, hair cutting, spa and beauty care — all the A ONE details, now easier to explore online.</p>
       <div className="booklet-facts">
