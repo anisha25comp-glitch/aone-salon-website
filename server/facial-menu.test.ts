@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
 const homepage = readFileSync("client/src/pages/Home.tsx", "utf8");
+const stylesheet = readFileSync("client/src/index.css", "utf8");
 
 describe("facial menu and offer expiry", () => {
   it("includes the supplied facial and Hydra prices in the Skin & beauty menu", () => {
@@ -14,9 +15,16 @@ describe("facial menu and offer expiry", () => {
     expect(homepage).toContain('["FYC Hydra Facial", "₹2,499", "₹3,499"]');
     expect(homepage).toContain('["O3+ Bridal Facial", "₹3,499", "₹3,499"]');
     expect(homepage).toContain('["Thalgo Facial", "₹6,999", "₹7,999"]');
-    expect(homepage).toContain('return "Facial & Hydra"');
-    expect(homepage).toContain('<small>FACIAL</small>{price}');
-    expect(homepage).toContain('<small>HYDRA</small>{hydraPrice}');
+    expect(homepage).toContain('return "Facial"');
+    expect(homepage).toContain('return "Hydra Facial"');
+    expect(homepage).toContain('subsection === "Hydra Facial"');
+    expect(homepage).toContain('const displayService = hydraBlock');
+  });
+
+  it("underlines every menu heading", () => {
+    expect(stylesheet).toContain(".ig-menu-section h2");
+    expect(stylesheet).toContain(".ig-menu-section .menu-subsection h4");
+    expect(stylesheet).toContain("text-decoration-line: underline");
   });
 
   it("gates the limited offer and its shortcut behind the expiry timestamp", () => {

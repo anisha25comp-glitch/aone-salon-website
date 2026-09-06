@@ -129,4 +129,11 @@
 - [x] Audit and convert every image/video reference so the exported project is self-contained and Vercel-compatible without design changes.
 - [x] Resolve the GitHub conflict by preserving the current A ONE homepage and merging only uploaded booklet/image files plus asset-loading fixes.
 - [x] Recompress the used creator video and booklet cover below repository limits without changing the current homepage design, then remove only unused duplicate booklet-gallery uploads from the deployable project.
-- [ ] Debug actual production image URLs, identify the broken path, and commit only the minimal asset-loading fix without changing the homepage design or functionality.
+- [x] Debug actual production image URLs, identify the broken path, and commit only the minimal asset-loading fix without changing the homepage design or functionality.
+- [ ] Trigger or wait for the actual Netlify/Vercel production rebuild from commit eb48d59 and confirm the live bundle uses /assets/ paths.
+- [ ] Verify every current homepage image and media URL returns HTTP 200 on https://aoneunisexsalon.in.
+- [ ] If the live host is not rebuilding from the connected branch, identify the hosting configuration mismatch and report the required Netlify/Vercel setting.
+- [ ] Publish the corrected deployment to custom domain aoneunisexsalon.in and verify the homepage and image URLs after DNS/hosting configuration.
+- [ ] Add aoneunisexsalon.in to Manus Domains, preserve existing email DNS records, switch nameservers from Netlify/NS1 to Hostinger, and configure the exact Manus DNS records.
+- [ ] Recover the accidental Netlify DNS removal, preserve email records, and restore a working custom-domain DNS configuration.
+- [x] Separate the Hydra Facial block from regular Facial and underline every menu heading without changing prices or booking behavior.

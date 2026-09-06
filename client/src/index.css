@@ -101,3 +101,12 @@
 
 /* Facial menu pricing: keep standard Facial and Hydra rates visibly separate. */
 .dual-prices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:center;gap:8px;min-width:0;text-align:right;font:600 10px var(--body);line-height:1.05}.dual-prices>span{display:flex;min-width:0;flex-direction:column;gap:3px;white-space:nowrap}.dual-prices small{font:800 7px var(--geo);letter-spacing:.08em;color:#777}.service-row.selected .dual-prices small{color:#555}@media(max-width:640px){.dual-prices{gap:6px;font-size:8px}.dual-prices small{font-size:6px;letter-spacing:.02em}.dual-prices>span{gap:2px}}
+
+/* Menu heading treatment: keep every menu heading visibly separated and underlined. */
+.ig-menu-section h2,
+.ig-menu-section .menu-subsection h4 {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 6px;
+  text-decoration-color: currentColor;
+}
