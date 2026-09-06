@@ -110,3 +110,9 @@
   text-underline-offset: 6px;
   text-decoration-color: currentColor;
 }
+
+.hydra-feature-visual{display:grid;grid-template-columns:minmax(110px,28%) minmax(0,1fr);gap:16px;align-items:center;margin:0 0 18px;padding:12px;border:1px solid var(--line);background:var(--paper)}
+.hydra-feature-visual img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;filter:grayscale(1);background:#e8e8e8}
+.hydra-feature-visual .mini-label{display:block;margin-bottom:8px}
+.hydra-feature-visual p{margin:0;max-width:28ch;font-size:12px;line-height:1.5;color:#555}
+@media(max-width:640px){.hydra-feature-visual{grid-template-columns:92px minmax(0,1fr);gap:12px;padding:10px}.hydra-feature-visual p{font-size:11px}.hydra-feature-visual .mini-label{font-size:8px}}

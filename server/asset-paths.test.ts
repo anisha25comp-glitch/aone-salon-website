@@ -5,6 +5,7 @@ import { describe, expect, it } from "vitest";
 const homepageSource = readFileSync(join(process.cwd(), "client/src/pages/Home.tsx"), "utf8");
 const indexSource = readFileSync(join(process.cwd(), "client/index.html"), "utf8");
 const websiteSources = `${homepageSource}\n${indexSource}`;
+const hydraAsset = "/assets/hydra-facial-machine.webp";
 const referencedAssets = [...websiteSources.matchAll(/\/(?:assets)\/[A-Za-z0-9._/-]+/g)].map(([asset]) => asset);
 const coreVisualAssets = [
   "/assets/aone-hero_d342bf01.jpg",
@@ -15,12 +16,15 @@ const coreVisualAssets = [
   "/assets/hair-result-1_f6ac3975.jpeg",
   "/assets/colour-result_70bbb9e7.jpeg",
   "/assets/grooming-result_8839661c.jpeg",
-  "/assets/salon-brand_132314f5.jpg",
+        "/assets/salon-brand_132314f5.jpg",
+      hydraAsset,
+
 ];
 
 describe("Vercel asset paths", () => {
   it("does not use Manus-only storage paths in website sources", () => {
     expect(websiteSources).not.toContain("/manus-storage/");
+    expect(websiteSources).toContain(hydraAsset);
   });
 
   it("keeps the core hero, menu, booklet, gallery, and logo assets on public paths", () => {

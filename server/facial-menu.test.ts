@@ -19,6 +19,8 @@ describe("facial menu and offer expiry", () => {
     expect(homepage).toContain('return "Hydra Facial"');
     expect(homepage).toContain('subsection === "Hydra Facial"');
     expect(homepage).toContain('const displayService = hydraBlock');
+    expect(homepage).toContain('className="hydra-feature-visual"');
+    expect(homepage).toContain('/assets/hydra-facial-machine.webp');
   });
 
   it("underlines every menu heading", () => {

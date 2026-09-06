@@ -137,3 +137,7 @@
 - [x] Add aoneunisexsalon.in to Manus Domains, preserve existing email DNS records, switch nameservers from Netlify/NS1 to Hostinger, and configure the exact Manus DNS records. (Superseded: user paused domain/DNS work.)
 - [x] Recover the accidental Netlify DNS removal, preserve email records, and restore a working custom-domain DNS configuration. (Superseded: user paused domain/DNS work.)
 - [x] Separate the Hydra Facial block from regular Facial and underline every menu heading without changing prices or booking behavior.
+- [x] Add a premium monochrome Hydra machine visual to the separate Hydra Facial menu block without changing the rest of the website.
+- [x] Vendor the generated Hydra machine visual into client/public/assets with a production-safe filename.
+- [x] Update the Hydra block and tests to use the local `/assets/...` path and reject all remaining Manus storage references.
+- [x] Re-run asset-path tests, production build, and responsive verification for the vendored Hydra image.
