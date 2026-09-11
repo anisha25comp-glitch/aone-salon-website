@@ -1,4 +1,4 @@
-import { count, desc, eq, isNotNull } from "drizzle-orm";
+import { and, count, desc, eq, isNotNull, ne } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import { Appointment, InsertAppointment, InsertUser, appointments, users } from "../drizzle/schema";
 import { ENV } from './_core/env';
@@ -104,12 +104,47 @@ export async function createAppointment(input: InsertAppointment): Promise<Appoi
   return created[0];
 }
 
+export function hourBucketFor(timeSlot: string): number {
+  const [clock, meridiem] = timeSlot.trim().split(/\s+/);
+  let hour = Number(clock.split(":")[0]);
+  if (meridiem?.toUpperCase() === "PM" && hour !== 12) hour += 12;
+  if (meridiem?.toUpperCase() === "AM" && hour === 12) hour = 0;
+  return hour;
+}
+
 export async function markAppointmentWhatsappSent(id: number): Promise<void> {
   const db = await getDb();
   if (!db) {
     throw new Error("Database is not available");
   }
+  const current = await db.select().from(appointments).where(eq(appointments.id, id)).limit(1);
+  if (!current[0]) throw new Error("Appointment was not found");
+  const sameDate = await db.select({ id: appointments.id, timeSlot: appointments.timeSlot, status: appointments.status, whatsappSentAt: appointments.whatsappSentAt })
+    .from(appointments)
+    .where(eq(appointments.appointmentDate, current[0].appointmentDate));
+  const booked = sameDate.filter((row) => row.id !== id && row.status !== "cancelled" && row.whatsappSentAt && hourBucketFor(row.timeSlot) === hourBucketFor(current[0].timeSlot)).length;
+  if (booked >= 3) {
+    const error = new Error("This one-hour slot is fully booked");
+    error.name = "SLOT_FULL";
+    throw error;
+  }
   await db.update(appointments).set({ whatsappSentAt: new Date() }).where(eq(appointments.id, id));
+}
+
+export async function getPublicSlotCounts(appointmentDate: Date) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is not available");
+  const rows = await db.select({ timeSlot: appointments.timeSlot, status: appointments.status, whatsappSentAt: appointments.whatsappSentAt })
+    .from(appointments)
+    .where(eq(appointments.appointmentDate, appointmentDate));
+  const counts = new Map<number, number>();
+  for (const row of rows) {
+    if (row.status !== "cancelled" && row.whatsappSentAt) {
+      const bucket = hourBucketFor(row.timeSlot);
+      counts.set(bucket, (counts.get(bucket) ?? 0) + 1);
+    }
+  }
+  return Array.from(counts, ([hourBucket, count]) => ({ hourBucket, count }));
 }
 
 export async function getAppointments() {
@@ -128,6 +163,7 @@ export async function getPublicAppointments() {
   return db
     .select({
       id: appointments.id,
+      customerName: appointments.customerName,
       service: appointments.service,
       appointmentDate: appointments.appointmentDate,
       timeSlot: appointments.timeSlot,
@@ -151,4 +187,13 @@ export async function getPublicAppointmentCount() {
     .from(appointments)
     .where(isNotNull(appointments.whatsappSentAt));
   return Number(result[0]?.count ?? 0);
+}
+
+export async function updateAppointmentStatus(id: number, status: "requested" | "confirmed" | "completed" | "cancelled") {
+  const db = await getDb();
+  if (!db) throw new Error("Database is not available");
+  await db.update(appointments).set({ status }).where(eq(appointments.id, id));
+  const updated = await db.select().from(appointments).where(eq(appointments.id, id)).limit(1);
+  if (!updated[0]) throw new Error("Appointment was not found");
+  return updated[0];
 }

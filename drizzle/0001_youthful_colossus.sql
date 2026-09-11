@@ -1,0 +1,1 @@
+ALTER TABLE `appointments` ADD `paymentMode` varchar(32) DEFAULT 'Pay at salon' NOT NULL;

@@ -141,3 +141,23 @@
 - [x] Vendor the generated Hydra machine visual into client/public/assets with a production-safe filename.
 - [x] Update the Hydra block and tests to use the local `/assets/...` path and reject all remaining Manus storage references.
 - [x] Re-run asset-path tests, production build, and responsive verification for the vendored Hydra image.
+- [x] Add a top-level Store button that opens a separate beauty-commerce section using an original A ONE beauty-commerce experience.
+- [x] Use publicly available official/retailer product sources with A ONE WhatsApp ordering; Nykaa-only affiliate checkout is not enabled without an affiliate feed.
+- [x] Use publicly available official/retailer product sources with A ONE WhatsApp ordering; Nykaa-only affiliate checkout is not enabled without an affiliate feed.
+- [x] Source product images and public purchase links from official brands or authorized retailers for the 12 supplied products, then map them into the separate Store catalog.
+- [x] Make the OUR STORE top button visually highlighted and subtly dynamic while preserving the premium monochrome design and free-plan performance.
+- [x] Limit each date/time slot to three recorded WhatsApp handoffs, mark full slots as BOOKED, and show privacy-safe customer names in the public activity list with full details admin-only.
+- [x] Enforce a maximum of three successful WhatsApp handoffs per date and one-hour slot, then grey out and disable only that full slot as BOOKED.
+- [x] Apply Store-only warm off-white, deep black, terracotta, beige, Playfair Display, DM Sans, whitespace, rounded cards, sticky cart, and subtle hover motion.
+- [x] Fix the booking slot query declaration order and verify the three-per-one-hour-slot BOOKED state.
+- [ ] Group the existing half-hour buttons into shared one-hour capacity buckets so three bookings across the hour mark both half-hour choices as BOOKED.
+- [ ] Render full customer names and phone numbers only in the signed-in admin activity view while keeping public names privacy-safe.
+- [ ] Add and verify grey styling for every full BOOKED time-slot button.
+- [ ] Strengthen tests to cover one-hour bucket aggregation, admin-only full details, and the booked visual state.
+- [ ] Remove the grey background behind the A ONE logo while preserving the logo artwork and sizing.
+- [ ] Add customer payment-mode selection to the appointment form, WhatsApp message, and persisted appointment data.
+- [ ] Add admin-only booking status management for Waiting, Confirmed, Completed, and Cancelled, with no private booking list exposed publicly.
+- [ ] Extend appointment slots and visible hours through 11:00 PM.
+- [ ] Apply beige styling to girls’ grooming and brown styling to boys’ grooming.
+- [ ] Verify and test payment-mode persistence plus the logo background removal.
+- [ ] Rework the menu presentation to follow the provided reference: category cards first, compact subsection tabs, and one active service list with ADD actions.

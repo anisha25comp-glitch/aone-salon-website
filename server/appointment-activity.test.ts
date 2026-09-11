@@ -15,7 +15,10 @@ describe("appointment activity privacy", () => {
 
   it("protects full appointment details behind the admin procedure", () => {
     expect(routerSource).toContain("list: adminProcedure.query(() => getAppointments())");
+    expect(routerSource).toContain("updateStatus: adminProcedure");
     expect(homeSource).toContain('enabled: user?.role === "admin"');
-    expect(homeSource).toContain('user?.role === "admin" && <div className="activity-admin-phone">');
+    expect(homeSource).toContain('user?.role === "admin" ? <div className="admin-booking-panel">');
+    expect(homeSource).toContain("customerPhone");
+    expect(homeSource).toContain("paymentMode");
   });
 });

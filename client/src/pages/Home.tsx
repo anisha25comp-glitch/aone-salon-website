@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
-import { ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, Clock3, Instagram, MapPin, Menu, Phone, Sparkles, Star, Users, X } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, Clock3, Instagram, MapPin, Menu, Phone, ShoppingBag, Sparkles, Star, Users, X } from "lucide-react";
 
 const LIMITED_OFFER_END = new Date("2026-09-01T00:00:00+05:30").getTime();
 
@@ -25,6 +25,9 @@ const packages = [{ label: "WOMEN", title: "The occasion edit", copy: "Haircut +
 const galleryImages = [{ src: "/assets/hair-result-1_f6ac3975.jpeg", label: "HAIR / RESULT" }, { src: "/assets/colour-result_70bbb9e7.jpeg", label: "COLOUR / RESULT" }, { src: "/assets/grooming-result_8839661c.jpeg", label: "GROOMING / RESULT" }, { src: "/assets/salon-brand_132314f5.jpg", label: "THE A ONE SPACE" }];
 const timeSlots = ["9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", "1:00 PM", "1:30 PM", "2:00 PM", "2:30 PM", "3:00 PM", "3:30 PM", "4:00 PM", "4:30 PM", "5:00 PM", "5:30 PM", "6:00 PM", "6:30 PM", "7:00 PM", "7:30 PM", "8:00 PM", "8:30 PM"];
 const providers = ["Any available provider", "Faiz", "Divya", "Sarang"];
+const appointmentStatuses = ["requested", "confirmed", "completed", "cancelled"] as const;
+const statusLabel = (status: string) => status === "requested" ? "WAITING LIST" : status.toUpperCase();
+const menuSubsectionsFor = (category: Category) => category === "Skin & beauty" ? ["Cleanup & D-Tan", "Threading", "Waxing", "Facial", "Hydra Facial"] : Array.from(new Set(menu[category].items.map(([service]) => subsectionFor(category, service))));
 const subsectionFor = (category: Category, service: string) => {
   if (category === "Women’s hair") {
     if (/Keratin|Nanoplastia|Botox|Smoothening|Kera|Pumming/i.test(service)) return "Hair Treatments";
@@ -61,28 +64,34 @@ const menuItemsForSubsection = (category: Category, subsection: string) => {
 
 export default function Home() {
   const { user } = useAuth({ redirectOnUnauthenticated: false });
-  const publicActivityQuery = trpc.appointments.publicSummary.useQuery(undefined, { retry: false });
   const publicCountQuery = trpc.appointments.publicCount.useQuery(undefined, { retry: false });
   const adminActivityQuery = trpc.appointments.list.useQuery(undefined, { enabled: user?.role === "admin", retry: false });
   const createAppointmentMutation = trpc.appointments.create.useMutation();
   const markWhatsappSentMutation = trpc.appointments.markWhatsappSent.useMutation();
+  const updateStatusMutation = trpc.appointments.updateStatus.useMutation();
   const [slide, setSlide] = useState(0);
   const [limitedOfferActive, setLimitedOfferActive] = useState(() => Date.now() < LIMITED_OFFER_END);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeMenuFilter, setActiveMenuFilter] = useState<{ category: Category; subsection: string }>({ category: "Women’s hair", subsection: "Haircut & Styling" });
   const [videoOpen, setVideoOpen] = useState(false);
   const [creatorAudioBlocked, setCreatorAudioBlocked] = useState(false);
   const [bookingStatus, setBookingStatus] = useState<"idle" | "recording" | "error">("idle");
+  const [bookingError, setBookingError] = useState("");
   const [bookingService, setBookingService] = useState("");
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [bookingProvider, setBookingProvider] = useState("Any available provider");
   const [bookingDate, setBookingDate] = useState("");
+  const slotCountsQuery = trpc.appointments.slotCounts.useQuery({ appointmentDate: bookingDate }, { enabled: Boolean(bookingDate), retry: false });
   const [bookingTime, setBookingTime] = useState("");
   const [bookingName, setBookingName] = useState("");
   const [bookingPhone, setBookingPhone] = useState("");
+  const [paymentMode, setPaymentMode] = useState<"Pay at salon" | "UPI" | "Card" | "Cash">("Pay at salon");
   const current = heroSlides[slide];
   const minBookingDate = new Date().toISOString().split("T")[0];
-  const whatsappBooking = `https://api.whatsapp.com/send?phone=919730510517&text=${encodeURIComponent(`Hello A ONE Salon, I would like to book ${bookingService} on ${bookingDate} at ${bookingTime}. My name is ${bookingName} and my phone number is ${bookingPhone}, preferred provider ${bookingProvider}.`)}`;
+  const whatsappBooking = `https://api.whatsapp.com/send?phone=919730510517&text=${encodeURIComponent(`Hello A ONE Salon, I would like to book ${bookingService} on ${bookingDate} at ${bookingTime}. My name is ${bookingName} and my phone number is ${bookingPhone}, preferred provider ${bookingProvider}, preferred payment mode ${paymentMode}.`)}`;
   const go = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  const hourBucketFor = (time: string) => { const [clock, meridiem] = time.split(" "); let hour = Number(clock.split(":")[0]); if (meridiem === "PM" && hour !== 12) hour += 12; if (meridiem === "AM" && hour === 12) hour = 0; return hour; };
+  const slotCountFor = (time: string) => slotCountsQuery.data?.find((slot) => slot.hourBucket === hourBucketFor(time))?.count ?? 0;
   const selectService = (service: string) => {
     setSelectedServices((current) => {
       const next = current.includes(service) ? current.filter((item) => item !== service) : [...current, service];
@@ -92,6 +101,12 @@ export default function Home() {
   };
   const submitBooking = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (slotCountFor(bookingTime) >= 3) {
+      setBookingError("This one-hour slot is fully booked. Please choose another time.");
+      setBookingStatus("error");
+      return;
+    }
+    setBookingError("");
     setBookingStatus("recording");
     window.open(whatsappBooking, "_blank", "noopener,noreferrer");
     try {
@@ -102,10 +117,11 @@ export default function Home() {
         provider: bookingProvider,
         customerName: bookingName,
         customerPhone: bookingPhone,
+        paymentMode,
       });
       await markWhatsappSentMutation.mutateAsync({ id: created.appointmentId });
-      await publicActivityQuery.refetch();
       await publicCountQuery.refetch();
+      await slotCountsQuery.refetch();
       if (user?.role === "admin") await adminActivityQuery.refetch();
       setBookingService("");
       setSelectedServices([]);
@@ -113,8 +129,11 @@ export default function Home() {
       setBookingTime("");
       setBookingName("");
       setBookingPhone("");
+      setPaymentMode("Pay at salon");
       setBookingStatus("idle");
-    } catch {
+    } catch (error) {
+      setBookingError(error instanceof Error && error.message.toLowerCase().includes("fully booked") ? "This one-hour slot is fully booked. Please choose another time." : "WhatsApp opened, but this handoff could not be added to the activity list.");
+      await slotCountsQuery.refetch();
       setBookingStatus("error");
     }
   };
@@ -131,7 +150,7 @@ export default function Home() {
 
   return <main className="instagram-shell">
     <div className="top-ticker"><span>BADLAPUR WEST’S UNISEX SALON & BEAUTY PARLOUR</span><span>NOW BOOKING <Sparkles size={13} /></span><span>EST. 2023</span></div>
-    <header className="ig-header"><a className="ig-brand" href="#top"><span className="ig-mark"><img src="/assets/aone-authentic-logo_d251e44f.jpg" alt="A ONE Unisex Salon and Beauty Parlour" /></span></a><nav className={menuOpen ? "ig-nav open" : "ig-nav"}><a href="#menu" onClick={() => setMenuOpen(false)}>Menu</a><a href="#packages" onClick={() => setMenuOpen(false)}>Offers</a><a href="#membership" onClick={() => setMenuOpen(false)}>Membership</a><a href="#contact" onClick={() => setMenuOpen(false)}>Find us</a></nav><div className="ig-head-actions"><a href="https://www.instagram.com/aone_salon_spa/" target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram size={18} /></a><button className="ig-book" onClick={() => go("book")}>BOOK NOW <ArrowUpRight size={15} /></button></div><button className="ig-menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">{menuOpen ? <X /> : <Menu />}</button></header>
+    <header className="ig-header"><a className="ig-brand" href="#top"><span className="ig-mark"><img src="/assets/aone-authentic-logo_d251e44f.jpg" alt="A ONE Unisex Salon and Beauty Parlour" /></span></a><nav className={menuOpen ? "ig-nav open" : "ig-nav"}><a href="#menu" onClick={() => setMenuOpen(false)}>Menu</a><a href="#packages" onClick={() => setMenuOpen(false)}>Offers</a><a href="#membership" onClick={() => setMenuOpen(false)}>Membership</a><a href="#contact" onClick={() => setMenuOpen(false)}>Find us</a></nav><div className="ig-head-actions"><a className="store-nav-button" href="/store"><ShoppingBag size={15} /> OUR STORE <ArrowUpRight size={13} /></a><a href="https://www.instagram.com/aone_salon_spa/" target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram size={18} /></a><button className="ig-book" onClick={() => go("book")}>BOOK NOW <ArrowUpRight size={15} /></button></div><button className="ig-menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">{menuOpen ? <X /> : <Menu />}</button></header>
 
     <section className="ig-hero" id="top"><div className="hero-left"><div className="hero-kicker"><span />{current.kicker}</div><h1>{current.title.split("\n").map((line, i) => <span key={line} className={i === 1 ? "hero-pop" : ""}>{line}</span>)}</h1><p>{current.copy}</p><div className="hero-buttons"><button className="ig-book big" onClick={() => go("book")}>BOOK YOUR APPOINTMENT <ArrowRight size={17} /></button><button className="outline-button" onClick={() => go("menu")}>SEE THE MENU</button><a className="call-button" href="tel:+919730510517"><Phone size={16} /> CALL A ONE</a><a className="locate-button" href="https://maps.app.goo.gl/tZdJL9xggo6fZRxC8" target="_blank" rel="noreferrer"><MapPin size={14} /> LOCATE US</a>{limitedOfferActive && <button className="special-offers-button" onClick={() => go("limited-offer")}>SPECIAL OFFERS <ArrowUpRight size={14} /></button>}<button className="full-packages-button" onClick={() => go("packages")}>FULL PACKAGES <ArrowUpRight size={14} /></button></div><div className="hero-bottom"><span><Star size={15} fill="currentColor" /> 267+ local followers</span><span>Shop no. 1, Rameshwadi</span></div></div><div className="hero-right"><div className="hero-photo" style={{ backgroundImage: `url(${current.image})` }} /><div className="hero-sticker">{current.badge}<br /><b>♥</b></div><div className="hero-slide-control"><button onClick={() => setSlide((slide + heroSlides.length - 1) % heroSlides.length)} aria-label="Previous"><ChevronLeft /></button><strong>0{slide + 1}</strong><span>/ 03</span><button onClick={() => setSlide((slide + 1) % heroSlides.length)} aria-label="Next"><ChevronRight /></button></div><div className="hero-hashtag">#AONELOOK</div></div></section>
 
@@ -143,9 +162,9 @@ export default function Home() {
 
     <section className="providers-section" id="providers"><div className="providers-head"><div><span className="mini-label">02 / THE TEAM</span><h2>Best service<br /><b>providers.</b></h2></div><p>Meet the A ONE team. Choose a preferred provider when you send your appointment request, or let us match you with the right person.</p></div><div className="provider-grid">{providers.slice(1).map((provider, index) => { const role = provider === "Faiz" || provider === "Sarang" ? "Hair dresser" : "Beautician"; return <article className="provider-card" key={provider}><div className="provider-avatar" aria-hidden="true">{provider.slice(0, 1)}</div><div className="provider-number">0{index + 1}</div><h3>{provider}</h3><span>{role}</span><button onClick={() => { setBookingProvider(provider); go("book"); }}>CHOOSE {provider.toUpperCase()} <ArrowUpRight size={15} /></button></article>; })}</div></section>
 
-    <section className="booking-section" id="book"><div className="booking-intro"><span className="mini-label">05 / BOOK YOUR SLOT</span><h2>Make time<br /><b>for you.</b></h2><p>Choose your service, preferred day and a time that works. We’ll confirm your appointment on WhatsApp.</p><div className="booking-note"><Clock3 size={17} /> Expanded schedule · confirmation by A ONE team</div></div><div className="booking-card"><form onSubmit={submitBooking}><label>SERVICE YOU WANT<input type="text" placeholder="Type a service or choose one from the menu" value={bookingService} onChange={(event) => setBookingService(event.target.value)} required /></label><label>CHOOSE DATE<input type="date" min={minBookingDate} value={bookingDate} onChange={(event) => setBookingDate(event.target.value)} required /></label><label>CHOOSE YOUR PROVIDER<select value={bookingProvider} onChange={(event) => setBookingProvider(event.target.value)}>{providers.map((provider) => <option key={provider} value={provider}>{provider}</option>)}</select></label><fieldset><legend>CHOOSE TIME</legend><div className="time-slots">{timeSlots.map((time) => <button type="button" key={time} className={bookingTime === time ? "time-slot selected" : "time-slot"} onClick={() => setBookingTime(time)}>{time}</button>)}</div>{!bookingTime && <small>Select an available time slot</small>}</fieldset><div className="booking-fields"><label>YOUR NAME<input type="text" placeholder="Full name" value={bookingName} onChange={(event) => setBookingName(event.target.value)} required /></label><label>PHONE NUMBER<input type="tel" placeholder="10-digit number" pattern="[0-9]{10}" value={bookingPhone} onChange={(event) => setBookingPhone(event.target.value)} required /></label></div><button className="booking-submit" type="submit" disabled={!bookingTime || !bookingService.trim() || bookingStatus === "recording"}>{bookingStatus === "recording" ? "RECORDING HANDOFF…" : "OPEN WHATSAPP & BOOK"} <ArrowRight size={17} /></button><p className="booking-disclaimer">WhatsApp opens with your appointment details ready to send. A ONE confirms the request directly.</p>{bookingStatus === "error" && <p className="booking-error">WhatsApp opened, but this handoff could not be added to the activity list. Please contact A ONE directly if needed.</p>}</form></div></section>
+    <section className="booking-section" id="book"><div className="booking-intro"><span className="mini-label">05 / BOOK YOUR SLOT</span><h2>Make time<br /><b>for you.</b></h2><p>Choose your service, preferred day and a time that works. We’ll confirm your appointment on WhatsApp.</p><div className="booking-note"><Clock3 size={17} /> Expanded schedule · confirmation by A ONE team</div></div><div className="booking-card"><form onSubmit={submitBooking}><label>SERVICE YOU WANT<input type="text" placeholder="Type a service or choose one from the menu" value={bookingService} onChange={(event) => setBookingService(event.target.value)} required /></label><label>CHOOSE DATE<input type="date" min={minBookingDate} value={bookingDate} onChange={(event) => setBookingDate(event.target.value)} required /></label><label>CHOOSE YOUR PROVIDER<select value={bookingProvider} onChange={(event) => setBookingProvider(event.target.value)}>{providers.map((provider) => <option key={provider} value={provider}>{provider}</option>)}</select></label><fieldset><legend>CHOOSE TIME</legend><div className="time-slots">{timeSlots.map((time) => { const count = slotCountFor(time); const full = count >= 3; return <button type="button" key={time} disabled={full} className={`${bookingTime === time ? "time-slot selected" : "time-slot"}${full ? " booked" : ""}`} onClick={() => setBookingTime(time)}>{full ? "BOOKED" : time}</button>; })}</div>{!bookingTime && <small>Select an available time slot</small>}</fieldset><div className="booking-fields"><label>YOUR NAME<input type="text" placeholder="Full name" value={bookingName} onChange={(event) => setBookingName(event.target.value)} required /></label><label>PHONE NUMBER<input type="tel" placeholder="10-digit number" pattern="[0-9]{10}" value={bookingPhone} onChange={(event) => setBookingPhone(event.target.value)} required /></label></div><label className="payment-mode-field">PAYMENT MODE<select value={paymentMode} onChange={(event) => setPaymentMode(event.target.value as typeof paymentMode)}><option value="Pay at salon">Pay at salon</option><option value="UPI">UPI</option><option value="Card">Card</option><option value="Cash">Cash</option></select></label><button className="booking-submit" type="submit" disabled={!bookingTime || !bookingService.trim() || bookingStatus === "recording"}>{bookingStatus === "recording" ? "RECORDING HANDOFF…" : "OPEN WHATSAPP & BOOK"} <ArrowRight size={17} /></button><p className="booking-disclaimer">WhatsApp opens with your appointment details ready to send. A ONE confirms the request directly.</p>{bookingStatus === "error" && <p className="booking-error">{bookingError || "Please choose another time or contact A ONE directly."}</p>}</form></div></section>
 
-    <section className="booking-activity-section" id="booking-activity"><div className="activity-head"><div><span className="mini-label">06 / BOOKING ACTIVITY</span><h2>Recent<br /><b>requests.</b></h2></div></div><div className="activity-summary"><strong>{publicCountQuery.data ?? 0}</strong><span>WhatsApp handoffs recorded</span></div>{publicActivityQuery.isLoading ? <p className="activity-empty">Loading booking activity…</p> : publicActivityQuery.data?.length ? <div className="activity-list">{publicActivityQuery.data.map((appointment) => <article className="activity-row" key={appointment.id}><div><strong>{appointment.service}</strong><span>{appointment.provider} · {new Date(`${String(appointment.appointmentDate).slice(0, 10)}T00:00:00`).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })} · {appointment.timeSlot}</span></div><div><strong>HANDOFF</strong><span>{appointment.whatsappSentAt ? new Date(appointment.whatsappSentAt).toLocaleTimeString("en-IN", { hour: "numeric", minute: "2-digit" }) : "Pending"}</span></div>{user?.role === "admin" && <div className="activity-admin-phone"><strong>ADMIN PHONE</strong><span>{adminActivityQuery.data?.find((record) => record.id === appointment.id)?.customerPhone ?? "Loading…"}</span></div>}</article>)}</div> : <p className="activity-empty">No WhatsApp booking handoffs have been recorded yet.</p>}{user?.role === "admin" && <p className="activity-admin-note">Admin view enabled. Customer numbers are shown only in this signed-in admin view.</p>}</section>
+    <section className="booking-activity-section" id="booking-activity"><div className="activity-head"><div><span className="mini-label">06 / BOOKING ACTIVITY</span><h2>Booking<br /><b>control room.</b></h2></div></div><div className="activity-summary"><strong>{publicCountQuery.data ?? 0}</strong><span>WhatsApp handoffs recorded</span></div>{user?.role === "admin" ? <div className="admin-booking-panel"><div className="admin-panel-heading"><div><span className="mini-label">ADMIN ONLY</span><h3>Manage appointments</h3></div><span className="admin-user-badge">SIGNED IN AS ADMIN</span></div>{adminActivityQuery.isLoading ? <p className="activity-empty">Loading private appointments…</p> : adminActivityQuery.data?.length ? <div className="admin-booking-list">{adminActivityQuery.data.map((appointment) => <article className="admin-booking-row" key={appointment.id}><div className="admin-booking-main"><strong>{appointment.customerName}</strong><span>{appointment.customerPhone}</span><span>{appointment.service}</span></div><div><strong>{new Date(`${String(appointment.appointmentDate).slice(0, 10)}T00:00:00`).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}</strong><span>{appointment.timeSlot} · {appointment.provider}</span></div><div><strong>PAYMENT</strong><span>{appointment.paymentMode}</span></div><label className="admin-status-control"><span>STATUS</span><select value={appointment.status} disabled={updateStatusMutation.isPending} onChange={async (event) => { await updateStatusMutation.mutateAsync({ id: appointment.id, status: event.target.value as typeof appointmentStatuses[number] }); await adminActivityQuery.refetch(); }}><option value="requested">WAITING LIST</option><option value="confirmed">CONFIRMED</option><option value="completed">COMPLETED</option><option value="cancelled">CANCELLED</option></select></label></article>)}</div> : <p className="activity-empty">No appointments have been recorded yet.</p>}<p className="activity-admin-note">Private admin view: customer names, phone numbers, payment modes, and appointment statuses are visible only to signed-in A ONE admins.</p></div> : <p className="activity-empty public-activity-locked">Booking details are managed privately by the A ONE team. The total WhatsApp handoffs recorded is shown above.</p>}</section>
 
     <section className="gallery-section" id="gallery"><div className="gallery-head"><div><span className="mini-label">02 / OUR WORK</span><h2>Made to be<br /><b>seen.</b></h2></div><a className="gallery-instagram" href="https://www.instagram.com/aone_salon_spa/" target="_blank" rel="noreferrer">SEE MORE ON INSTAGRAM <Instagram size={15} /></a></div><div className="gallery-grid">{galleryImages.map((image, index) => <figure className={`gallery-tile gallery-tile-${index + 1}`} key={image.src}><img src={image.src} alt={`A ONE Salon ${image.label.toLowerCase()}`} /><figcaption>{image.label}<span>0{index + 1}</span></figcaption></figure>)}</div></section>
 
